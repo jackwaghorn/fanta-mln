@@ -47,10 +47,12 @@ function openGallery(a: any) {
     currentImg.value = galleryAuthor?.value.data.gallery.length
 
     galleryOpen.value = true
+    document.body.style.overflow = "hidden"
 }
 function closeGallery() {
     galleryAuthor.value = Object as any
     galleryOpen.value = false;
+    document.body.style.overflow = "auto"
 }
 function handleKeyDown(event: any) {
     if (event.key === "ArrowLeft") {
@@ -125,8 +127,8 @@ useHead({
             <!-- Gallery -->
             <transition name="fade">
                 <section v-if="galleryOpen"
-                    class="gallery fixed bg-[#dfdfdfcf] h-screen w-screen top-0 left-0 backdrop-blur-sm select-none z-30">
-                    <div class="flex p-1 md:p-5 justify-center h-full max-h-screen">
+                    class="gallery fixed bg-[#dfdfdfcf] h-full w-screen top-0 left-0 backdrop-blur-sm select-none z-30">
+                    <div class="flex p-1 md:p-5 justify-center h-full ">
                         <!-- Left -->
                         <div @click="prevImg" class="w-[2rem] md:w-[8rem] h-full relative hover:cursor-pointer">
                             <span class="left-0 absolute text-[1.5rem]
@@ -141,11 +143,11 @@ useHead({
                             <div class="col-span-1 md:h-full md:flex items-center">
                                 <div>
                                     <p class="pb-5">{{ galleryAuthor?.data?.title }}</p>
-                                    <PrismicRichText class="" :field="galleryAuthor?.data.Specifications" />
+                                    <PrismicRichText class="text-st" :field="galleryAuthor?.data.Specifications" />
                                 </div>
                             </div>
                             <div class="col-span-1 md:h-full md:flex items-center pt-5 md:pt-0">
-                                <PrismicRichText class="" :field="galleryAuthor?.data.extended_description" />
+                                <PrismicRichText class="text-st" :field="galleryAuthor?.data.extended_description" />
                             </div>
 
                         </div>
@@ -159,8 +161,8 @@ useHead({
                                         :src="image.image.url ?? ''" alt="" />
                                 </div>
                             </div>
-                            <div class="justify-self-start w-full">
-                                <PrismicRichText class="justify-self-start w-full"
+                            <div class="justify-self-start w-full text-st">
+                                <PrismicRichText class="justify-self-start w-full text-st"
                                     :field="galleryAuthor?.data.Specifications" />
                             </div>
 

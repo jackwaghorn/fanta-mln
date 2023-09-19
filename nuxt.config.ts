@@ -12,5 +12,8 @@ export default defineNuxtConfig({
     },
   },
   modules: ['@nuxtjs/prismic', '@nuxt/image'],
-  prismic: { endpoint: 'fanta-mln' }
+  prismic: { endpoint: 'fanta-mln' },
+  devServer: {
+    port: 3001,
+  },
 })

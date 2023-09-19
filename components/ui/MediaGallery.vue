@@ -50,7 +50,7 @@ onBeforeUnmount(() => {
         </div>
         <transition name="fade">
             <section v-if="galleryOpen"
-                class="gallery fixed z-30 bg-[#dfdfdfcf] h-screen w-screen top-0 left-0 backdrop-blur-sm select-none">
+                class="gallery fixed z-30 bg-[#dfdfdfcf] h-full w-screen top-0 left-0 backdrop-blur-sm select-none">
                 <div class="flex p-1 md:p-5 justify-center h-full max-h-screen">
                     <!-- Left -->
                     <div @click="prevImg" class="w-[2rem] md:w-[8rem] h-full relative hover:cursor-pointer">
