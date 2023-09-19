@@ -18,6 +18,7 @@ useHead({
 </script>
 
 <template>
+    <div>
     <NuxtLayout :title="page?.data.title" :author="page?.data.author" :date="String(`${new Date(String(page?.data.date_from)).toLocaleDateString('en-gb', { month: 'short', day: 'numeric' })}—${new Date(String(page?.data.date_to)).toLocaleDateString('en-gb', {
         month: 'short', day: 'numeric', year:
             'numeric'
@@ -27,5 +28,6 @@ useHead({
 
         <UiMediaGallery :gallery="page?.data.gallery?? []"/>
     </NuxtLayout>
+</div>
 </template>
 

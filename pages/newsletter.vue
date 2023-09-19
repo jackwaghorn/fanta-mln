@@ -17,6 +17,7 @@ useHead({
 </script>
 
 <template>
+    <div>
     <NuxtLayout title="Newsletter">
         <section class="w-full flex justify-center">
             <div class="w-full lg:w-10/12 xl:w-8/12">
@@ -48,6 +49,7 @@ useHead({
     </div>
         </section>
     </NuxtLayout>
+</div>
 </template>
 <style
  scoped>

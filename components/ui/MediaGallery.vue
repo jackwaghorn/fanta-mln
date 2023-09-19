@@ -81,7 +81,7 @@ onBeforeUnmount(() => {
                             &#8594;
                         </span>
                         <span @click="closeGallery"
-                            class="right-0 fixed w-full text-center md:text-right md:absolute top-4 z-10 text-st">
+                            class="right-0 fixed w-full text-center md:text-right md:absolute z-10 top-4 md:top-0 text-st">
                             Close
                         </span>
                     </div>
@@ -90,14 +90,3 @@ onBeforeUnmount(() => {
         </transition>
     </section>
 </template>
-<style scoped>
-.fade-enter-active,
-.fade-leave-active {
-    transition: opacity 0.5s ease;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-    opacity: 0;
-}
-</style>

@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { components } from "~/slices";
-
 const prismic = usePrismic();
 const { data: page } = useAsyncData("[news]", () =>
     prismic.client.getSingle("news")
@@ -61,7 +59,10 @@ function yearChecker(e: number) {
 </script>
 
 <template>
+    <div>
     <NuxtLayout title="News">
+        <section class="w-full flex justify-center">
+            <div class="w-full lg:w-10/12 xl:w-8/12">
         <div v-for="(year, index) in categorizeAndSortByDate" :key="index" class="w-full flex flex-wrap pb-5">
             <div :class="[yearChecker(year.year) ? 'opacity-50' : 'opacity-1']" class="pb-5 text-st w-full">
                 {{ year.year }}
@@ -79,6 +80,8 @@ function yearChecker(e: number) {
                 </div>
             </div>
         </div>
-        <SliceZone wrapper="main" :slices="page?.data.slices ?? []" :components="components" />
+        </div>
+        </section>
     </NuxtLayout>
+</div>
 </template>

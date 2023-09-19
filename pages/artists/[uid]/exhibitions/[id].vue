@@ -24,14 +24,15 @@ useHead({
 <template>
     <div>
 
-    </div>
+   
     <NuxtLayout :title="expoData?.primary?.title" :date="String(`${new Date(String(expoData.primary.date_from)).toLocaleDateString('en-gb', { month: 'short', day: 'numeric' })}—${new Date(String(expoData.primary.date_to)).toLocaleDateString('en-gb', {
         month: 'short', day: 'numeric', year:
             'numeric'
     })}
                 `)" release="Release" press="Press" :back="'/artists/' + route.params.uid + '/exhibitions'">
-       
-           <UiMediaGallery :gallery="expoData.items"/>
-     
+
+        <UiMediaGallery :gallery="expoData.items" />
+
     </NuxtLayout>
+</div>
 </template>

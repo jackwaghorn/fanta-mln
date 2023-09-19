@@ -81,6 +81,7 @@ useHead({
 
 </script>
 <template>
+    <div>
     <!-- Top spacer -->
     <div class="w-full h-[3rem] md:h-[5rem]">
     </div>
@@ -170,7 +171,7 @@ useHead({
                                 &#8594;
                             </span>
                             <span @click="closeGallery"
-                                class="right-0 fixed w-full text-st text-center md:text-right md:absolute top-5 z-10">
+                                class="right-0 fixed w-full text-st text-center md:text-right md:absolute top-4 md:top-0 z-10">
                                 Close
                             </span>
                         </div>
@@ -183,6 +184,7 @@ useHead({
 
         </section>
     </main>
+</div>
 </template>
 <style scoped>
 .fade-enter-active,

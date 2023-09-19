@@ -168,8 +168,8 @@ const weathers = ref({
         icon: 95
     }
 })
-watch(open,()=>{
-    if(open.value) {
+watch(open, () => {
+    if (open.value) {
         document.body.classList.add("overflow-hidden")
         document.body.classList.add("md:overflow-auto")
     } else {
@@ -206,8 +206,9 @@ watch(open,()=>{
             <section v-if="open"
                 class="h-auto w-full md:w-auto p-3 md:p-0 right-0 fixed md:right-5 pt-16 top-0 md:top-20 bg-white">
                 <ul class="text-st border-t border-b divide-y divide-primary border-primary md:text-center">
-                    <li v-for="link in links" :key="link" class=" md:px-2" >
-                        <NuxtLink class=""  :to="link.url">{{ link.title }}</NuxtLink>
+                    <li v-for="link in links" :key="link" class=" md:px-2">
+                        <NuxtLink class="hover:not-italic link-btn relative" :data-text="link.title" :to="link.url"><span>{{
+                            link.title }}</span></NuxtLink>
                     </li>
                 </ul>
             </section>
@@ -230,9 +231,41 @@ watch(open,()=>{
 </template>
 
 <style scoped>
+.link-btn::before {
+    content: attr(data-text);
+    /* Use a data attribute to store the button text */
+    position: absolute;
+    top: 1px;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    font-style: italic;
+    /* Apply the italic font style to the pseudo-element */
+    opacity: 0;
+    /* Initially hidden */
+}
+
+.link-btn:hover::before {
+    opacity: 1;
+    /* Show the pseudo-element on hover */
+}
+
+.link-btn:hover span {
+    opacity: 0;
+    /* Show the pseudo-element on hover */
+}
+
+.link-btn {
+    font-style: normal;
+}
+
+
+
 .weather-icon {
     filter: invert(17%) sepia(10%) saturate(6207%) hue-rotate(197deg) brightness(86%) contrast(99%);
 }
+
 .slide-enter-active {
     transition: all 0.3s ease-out;
 }
@@ -254,6 +287,5 @@ watch(open,()=>{
         transform: translateX(100px);
         opacity: 0;
     }
-}
-</style>
+}</style>
 

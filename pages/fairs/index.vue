@@ -26,6 +26,7 @@ useHead({
 });
 </script>
 <template>
+    <div>
     <NuxtLayout title="Fairs">
         <div v-for="(year, index) in categorizeAndSortByDate" :key="index"
             class="w-full pb-5 grid grid-cols-2 xl:grid-cols-3 gap-5">
@@ -56,4 +57,5 @@ useHead({
             </NuxtLink>
         </div>
     </NuxtLayout>
+</div>
 </template>

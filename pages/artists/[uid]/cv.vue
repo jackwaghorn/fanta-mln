@@ -17,6 +17,7 @@ useHead({
 </script>
 
 <template>
+  <div>
    <NuxtLayout :title="page?.data.name" :author="page?.data.bio"
         :links="[{ title: 'Works', url: `/artists/${route.params.uid}/works` }, { title: 'Exhibitions', url: `/artists/${route.params.uid}/exhibitions` }, { title: 'Elsewhere', url: `/artists/${route.params.uid}/elsewhere`},{ title: 'CV', url: `/artists/${route.params.uid}/cv`}, { title: 'Bibliography', url: `/artists/${route.params.uid}/bibliography`}]"
         back="/artists">
@@ -24,4 +25,5 @@ useHead({
         <PrismicRichText class="text-st" :field="page?.data?.cv_text_box" />
 
    </NuxtLayout>
+  </div>
 </template>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { components } from "~/slices";
+
 
 const prismic = usePrismic();
 const { data: page } = useAsyncData("[homepage]", () =>
@@ -20,11 +20,5 @@ useHead({
 <template>
   <main class="h-full flex items-center justify-center">
     <PrismicRichText class="text-st text-center" :field="page?.data.sample_text" />
-   
-  <SliceZone
-    wrapper="main"
-    :slices="page?.data.slices ?? []"
-    :components="components"
-  />
-</main>
+  </main>
 </template>

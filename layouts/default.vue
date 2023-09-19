@@ -2,6 +2,7 @@
 const props = defineProps(["title", "author", "date", "release", "press", "back", "links"])
 </script>
 <template>
+    <div>
     <!-- Top spacer -->
     <div class="w-full h-[3rem] md:h-[5rem]">
     </div>
@@ -36,4 +37,5 @@ const props = defineProps(["title", "author", "date", "release", "press", "back"
         </section>
 
     </main>
+</div>
 </template>

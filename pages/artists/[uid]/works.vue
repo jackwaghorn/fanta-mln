@@ -18,12 +18,11 @@ useHead({
 </script>
 
 <template>
+    <div>
     <NuxtLayout :title="page?.data.name" :author="page?.data.bio"
         :links="[{ title: 'Works', url: `/artists/${route.params.uid}/works` }, { title: 'Exhibitions', url: `/artists/${route.params.uid}/exhibitions` }, { title: 'Elsewhere', url: `/artists/${route.params.uid}/elsewhere`},{ title: 'CV', url: `/artists/${route.params.uid}/cv`}, { title: 'Bibliography', url: `/artists/${route.params.uid}/bibliography`}]"
         :back="'/artists/' + route.params.uid">
-
         <UiMediaGallery :gallery="page?.data.works ?? []" />
-
-
     </NuxtLayout>
+</div>
 </template>

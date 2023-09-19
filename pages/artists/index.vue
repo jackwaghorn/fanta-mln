@@ -13,6 +13,7 @@ useHead({
 });
 </script>
 <template>
+    <div>
     <NuxtLayout title="Artists">
 
         <NuxtLink :to="`/artists/${artist.uid}`" v-for="(artist, index) in page?.results" :key="index"
@@ -21,4 +22,5 @@ useHead({
         </NuxtLink>
 
     </NuxtLayout>
+</div>
 </template>
