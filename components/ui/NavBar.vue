@@ -207,8 +207,9 @@ watch(open, () => {
                 class="h-auto w-full md:w-auto p-3 md:p-0 right-0 fixed md:right-5 pt-16 top-0 md:top-20 bg-white">
                 <ul class="text-st border-t border-b divide-y divide-primary border-primary md:text-center">
                     <li v-for="link in links" :key="link" class=" md:px-2">
-                        <NuxtLink class="hover:not-italic link-btn relative" :data-text="link.title" :to="link.url"><span>{{
-                            link.title }}</span></NuxtLink>
+                        <NuxtLink :class="[link.url === '/editions' ? 'hover:not-italic link-btn' : 'hover:italic']"
+                            class="relative" :data-text="link.title" :to="link.url"><span>{{
+                                link.title }}</span></NuxtLink>
                     </li>
                 </ul>
             </section>
@@ -235,10 +236,12 @@ watch(open, () => {
     content: attr(data-text);
     /* Use a data attribute to store the button text */
     position: absolute;
-    top: 1px;
+    top: 0.03rem;
     left: 0;
     bottom: 0;
     right: 0;
+    width: 100%;
+    /* height:100%; */
     margin: auto;
     font-style: italic;
     /* Apply the italic font style to the pseudo-element */
@@ -287,5 +290,6 @@ watch(open, () => {
         transform: translateX(100px);
         opacity: 0;
     }
-}</style>
+}
+</style>
 
