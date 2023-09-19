@@ -1,0 +1,94 @@
+{
+  "id": "edition",
+  "type": "SharedSlice",
+  "name": "Edition",
+  "description": "Edition",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "title": {
+          "type": "Text",
+          "config": {
+            "label": "Title",
+            "placeholder": ""
+          }
+        },
+        "author": {
+          "type": "Text",
+          "config": {
+            "label": "Author",
+            "placeholder": ""
+          }
+        },
+        "editional_authors": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Editional authors",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,strong,em,hyperlink"
+          }
+        },
+        "specifications": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Specifications",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,hyperlink,strong,em"
+          }
+        },
+        "download_link": {
+          "type": "Link",
+          "config": {
+            "label": "Download link",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "select": null
+          }
+        },
+        "description": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Description",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,hyperlink,strong,em,o-list-item,list-item"
+          }
+        }
+      },
+      "items": {
+        "image": {
+          "type": "Image",
+          "config": {
+            "label": "Image",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "text_box": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Text Box",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,hyperlink,strong,em"
+          }
+        },
+        "video_embed": {
+          "type": "Embed",
+          "config": {
+            "label": "Video embed",
+            "placeholder": ""
+          }
+        }
+      }
+    }
+  ]
+}

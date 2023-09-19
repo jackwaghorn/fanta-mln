@@ -1,0 +1,111 @@
+{
+  "id": "exhibition",
+  "label": "Exhibition",
+  "format": "page",
+  "repeatable": true,
+  "status": true,
+  "json": {
+    "Main": {
+      "uid": {
+        "config": {
+          "label": "UID"
+        },
+        "type": "UID"
+      },
+      "title": {
+        "type": "Text",
+        "config": {
+          "label": "TItle",
+          "placeholder": ""
+        }
+      },
+      "author": {
+        "type": "Text",
+        "config": {
+          "label": "Author",
+          "placeholder": ""
+        }
+      },
+      "date_from": {
+        "type": "Date",
+        "config": {
+          "label": "Date from",
+          "placeholder": ""
+        }
+      },
+      "date_to": {
+        "type": "Date",
+        "config": {
+          "label": "Date to",
+          "placeholder": ""
+        }
+      },
+      "gallery": {
+        "type": "Group",
+        "config": {
+          "label": "Gallery",
+          "fields": {
+            "image": {
+              "type": "Image",
+              "config": {
+                "label": "Image",
+                "constraint": {},
+                "thumbnails": []
+              }
+            },
+            "video_embed": {
+              "type": "Embed",
+              "config": {
+                "label": "Video embed",
+                "placeholder": ""
+              }
+            },
+            "media_caption": {
+              "type": "StructuredText",
+              "config": {
+                "label": "Media caption",
+                "placeholder": "",
+                "allowTargetBlank": true,
+                "single": "paragraph,strong,em,hyperlink"
+              }
+            }
+          }
+        }
+      },
+      "slices": {
+        "type": "Slices",
+        "fieldset": "Slice Zone",
+        "config": {
+          "choices": {}
+        }
+      }
+    },
+    "SEO & Metadata": {
+      "meta_description": {
+        "config": {
+          "label": "Meta Description",
+          "placeholder": "A brief summary of the page"
+        },
+        "type": "Text"
+      },
+      "meta_image": {
+        "config": {
+          "constraint": {
+            "height": 1260,
+            "width": 2400
+          },
+          "label": "Meta Image",
+          "thumbnails": []
+        },
+        "type": "Image"
+      },
+      "meta_title": {
+        "config": {
+          "label": "Meta Title",
+          "placeholder": "A title of the page used for social media and search engines"
+        },
+        "type": "Text"
+      }
+    }
+  }
+}

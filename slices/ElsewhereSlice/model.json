@@ -1,0 +1,65 @@
+{
+  "id": "elsewhere_slice",
+  "type": "SharedSlice",
+  "name": "ElsewhereSlice",
+  "description": "ElsewhereSlice",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "title": {
+          "type": "Text",
+          "config": {
+            "label": "Title",
+            "placeholder": ""
+          }
+        },
+        "date_from": {
+          "type": "Date",
+          "config": {
+            "label": "Date from",
+            "placeholder": ""
+          }
+        },
+        "date_to": {
+          "type": "Date",
+          "config": {
+            "label": "Date to",
+            "placeholder": ""
+          }
+        }
+      },
+      "items": {
+        "image": {
+          "type": "Image",
+          "config": {
+            "label": "Image",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "video_embed": {
+          "type": "Embed",
+          "config": {
+            "label": "Video embed",
+            "placeholder": ""
+          }
+        },
+        "caption": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Caption",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "single": "paragraph,hyperlink,strong,em"
+          }
+        }
+      }
+    }
+  ]
+}
