@@ -69,4 +69,11 @@ useHead({
      /* Microsoft Edge */
      color: #19295A;
  }
+ input {
+  border-radius: 0;
+}
+
+input[type="search"] {
+  -webkit-appearance: none;
+}
 </style>
