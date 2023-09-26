@@ -58,6 +58,26 @@ onMounted(() => {
 </template>
 
 <style>
+.fancybox__caption {
+    bottom: 0;
+    width: 100%;
+}
+
+.fancybox__caption {
+    max-width: calc(100% - 2rem);
+}
+
+
+
+
+@media (min-width: 768px) {
+
+
+    .fancybox__caption {
+        max-width: calc(100% - 10rem);
+    }
+}
+
 .is-next,
 .is-prev {
     background: none !important;
