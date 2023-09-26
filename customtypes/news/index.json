@@ -40,6 +40,14 @@
                 "label": "Date to",
                 "placeholder": ""
               }
+            },
+            "link_to_page": {
+              "type": "Link",
+              "config": {
+                "label": "Link to page",
+                "placeholder": "",
+                "select": null
+              }
             }
           }
         }

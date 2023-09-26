@@ -31,7 +31,7 @@ useHead({
     })}
                 `)" release="Release" press="Press" :back="'/artists/' + route.params.uid + '/exhibitions'">
 
-        <UiMediaGallery :gallery="expoData.items" />
+        <UiLightBox :gallery="expoData.items" />
 
     </NuxtLayout>
 </div>

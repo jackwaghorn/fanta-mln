@@ -329,14 +329,39 @@ export interface ExhibitionDocumentDataGalleryItem {
   video_embed: prismic.EmbedField;
 
   /**
-   * Media caption field in *Exhibition → Gallery*
+   * Caption field in *Exhibition → Gallery*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: exhibition.gallery[].caption
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  caption: prismic.KeyTextField;
+}
+
+/**
+ * Item in *Exhibition → Press*
+ */
+export interface ExhibitionDocumentDataPressItem {
+  /**
+   * Article title field in *Exhibition → Press*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: exhibition.gallery[].media_caption
+   * - **API ID Path**: exhibition.press[].article_title
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
-  media_caption: prismic.RichTextField;
+  article_title: prismic.RichTextField;
+
+  /**
+   * Link field in *Exhibition → Press*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: exhibition.press[].link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField;
 }
 
 type ExhibitionDocumentDataSlicesSlice = never;
@@ -390,6 +415,17 @@ interface ExhibitionDocumentData {
   date_to: prismic.DateField;
 
   /**
+   * Press Release field in *Exhibition*
+   *
+   * - **Field Type**: Link to Media
+   * - **Placeholder**: *None*
+   * - **API ID Path**: exhibition.press_release
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  press_release: prismic.LinkToMediaField;
+
+  /**
    * Gallery field in *Exhibition*
    *
    * - **Field Type**: Group
@@ -399,6 +435,17 @@ interface ExhibitionDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#group
    */
   gallery: prismic.GroupField<Simplify<ExhibitionDocumentDataGalleryItem>>;
+
+  /**
+   * Press field in *Exhibition*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: exhibition.press[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  press: prismic.GroupField<Simplify<ExhibitionDocumentDataPressItem>>;
 
   /**
    * Slice Zone field in *Exhibition*
@@ -875,6 +922,16 @@ export interface NewsDocumentDataNewsItemsItem {
    * - **Documentation**: https://prismic.io/docs/field#date
    */
   date_to: prismic.DateField;
+
+  /**
+   * Link to page field in *News → News Items*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: news.news_items[].link_to_page
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link_to_page: prismic.LinkField;
 }
 
 type NewsDocumentDataSlicesSlice = never;
@@ -1433,6 +1490,7 @@ declare module "@prismicio/client" {
       ExhibitionDocument,
       ExhibitionDocumentData,
       ExhibitionDocumentDataGalleryItem,
+      ExhibitionDocumentDataPressItem,
       ExhibitionDocumentDataSlicesSlice,
       FairDocument,
       FairDocumentData,

@@ -13,15 +13,13 @@ useHead({
         },
     ],
 });
-
 const categorizeAndSortByDate = computed(() => {
     const categorizedItems: { year: number; items: any[] }[] = [];
-    page.value?.data.news_items.forEach((obj) => {
+    const allItems = page.value?.data.news_items.sort((a, b) => new Date(b.date_to) - new Date(a.date_to));
+    allItems?.forEach((obj) => {
         const year = new Date(String(obj.date_from)).getFullYear();
-        // Find the category for the year in the categorizedItems array
         const yearCategory = categorizedItems.find((category) => category.year === year);
 
-        // If the category for the year doesn't exist, create it
         if (!yearCategory) {
             categorizedItems.push({ year: year, items: [obj] });
         } else {
@@ -60,28 +58,32 @@ function yearChecker(e: number) {
 
 <template>
     <div>
-    <NuxtLayout title="News">
-        <section class="w-full flex justify-center">
-            <div class="w-full lg:w-10/12 xl:w-8/12">
-        <div v-for="(year, index) in categorizeAndSortByDate" :key="index" class="w-full flex flex-wrap pb-5">
-            <div :class="[yearChecker(year.year) ? 'opacity-50' : 'opacity-1']" class="pb-5 text-st w-full">
-                {{ year.year }}
-            </div>
-            <div  :class="[dateChecker(news.date_to) ? 'opacity-50' : 'opacity-1']"
-                v-for="(news, index) in year?.items || []" :key="index" class="pb-5 text-st flex ">
-                <span class="me-1">&#8594; </span>
-                <div>
-                    <PrismicRichText :field="news.title" />
-                    {{ new Date(news.date_from).toLocaleDateString('en-gb', { month: "long", day: "numeric" }) }} —
-                    {{ new Date(news.date_to).toLocaleDateString('en-gb', {
-                        month: "long", day: "numeric", year:
-                            "numeric"
-                    }) }} <span class="text-t">{{ news.type }}</span>
+        <NuxtLayout title="News">
+            <section class="w-full flex justify-center">
+                <div class="w-full lg:w-10/12 xl:w-8/12">
+                    <div v-for="(year, index) in categorizeAndSortByDate" :key="index" class="w-full flex flex-wrap pb-5">
+                        <div :class="[yearChecker(year.year) ? 'opacity-50' : 'opacity-1']" class="pb-5 text-st w-full">
+                            {{ year.year }}
+                        </div>
+                        <NuxtLink :to="`/${news.link_to_page.type}s/${news.link_to_page.uid}`"
+                            :class="[dateChecker(news.date_to) ? 'opacity-50' : 'opacity-1']"
+                            v-for="(news, index) in year?.items || []" :key="index" class="pb-5 text-st flex ">
+                            <span class="me-1">&#8594; </span>
+                            {{ }}
+                            <div>
+                                <PrismicRichText :field="news.title" />
+                                {{ new Date(news.date_from).toLocaleDateString('en-gb', { month: "long", day: "numeric" })
+                                }} —
+                                {{ new Date(news.date_to).toLocaleDateString('en-gb', {
+                                    month: "long", day: "numeric", year:
+                                        "numeric"
+                                }) }} <span class="text-t">{{ news.type }}</span>
+                            </div>
+                        </NuxtLink>
+                    </div>
+
                 </div>
-            </div>
-        </div>
-        </div>
-        </section>
-    </NuxtLayout>
-</div>
+            </section>
+        </NuxtLayout>
+    </div>
 </template>

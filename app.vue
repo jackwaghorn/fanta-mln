@@ -36,7 +36,7 @@ a:hover {
 
 @media (min-width: 768px) {
   .text-st {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     line-height: 1.4rem;
   }
 }
@@ -62,4 +62,16 @@ a:hover {
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
-}</style>
+}
+
+a:hover {
+  cursor:default;
+}
+
+*:hover {
+  cursor:default;
+}
+.is-compact .fancybox__footer {
+  background:transparent !important;
+}
+</style>

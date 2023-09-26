@@ -27,7 +27,7 @@ useHead({
             
 
 
-        <UiMediaGallery :gallery="page?.data.gallery?? []"/>
+        <UiLightBox :gallery="page?.data.gallery?? []"/>
     </NuxtLayout>
 </div>
 </template>

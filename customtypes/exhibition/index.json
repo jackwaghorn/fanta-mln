@@ -40,6 +40,14 @@
           "placeholder": ""
         }
       },
+      "press_release": {
+        "type": "Link",
+        "config": {
+          "label": "Press Release",
+          "placeholder": "",
+          "select": "media"
+        }
+      },
       "gallery": {
         "type": "Group",
         "config": {
@@ -60,13 +68,36 @@
                 "placeholder": ""
               }
             },
-            "media_caption": {
+            "caption": {
+              "type": "Text",
+              "config": {
+                "label": "Caption",
+                "placeholder": ""
+              }
+            }
+          }
+        }
+      },
+      "press": {
+        "type": "Group",
+        "config": {
+          "label": "Press",
+          "fields": {
+            "article_title": {
               "type": "StructuredText",
               "config": {
-                "label": "Media caption",
+                "label": "Article title",
                 "placeholder": "",
                 "allowTargetBlank": true,
-                "single": "paragraph,strong,em,hyperlink"
+                "single": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+              }
+            },
+            "link": {
+              "type": "Link",
+              "config": {
+                "label": "Link",
+                "placeholder": "",
+                "select": null
               }
             }
           }

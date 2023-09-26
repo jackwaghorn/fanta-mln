@@ -217,9 +217,9 @@ watch(open, () => {
     </header>
     <!-- Newsletter button -->
     <footer class="fixed p-3 md:p-5 bottom-0 left-0 z-20">
-        <NuxtLink to="/newsletter" class="text-st">
+        <a target="_blank" href="https://app.artshell.eu/galleries/57c53d0541bcb79d5b710b80/subscribe" class="text-st">
             &#8594; Subscribe
-        </NuxtLink>
+        </a>
     </footer>
     <!-- Weather -->
     <footer class="fixed p-3 md:p-5 bottom-0 right-0 z-20">
