@@ -169,7 +169,6 @@ useHead({
 }
 
 .spec-slide {
-    /* display: none; */
     max-width: calc(100% - 2rem);
 }
 
@@ -184,7 +183,7 @@ useHead({
 }
 
 .fancybox__content {
-    background: transparent;
+    background: transparent !important;
 }
 
 .is-next,
@@ -195,7 +194,6 @@ useHead({
     padding: 0 !important;
     border: none !important;
     box-shadow: none !important;
-
 }
 
 .is-next svg,
@@ -207,10 +205,8 @@ useHead({
 .is-prev::before {
     position: absolute;
     right: 0;
-
     content: "";
     display: inline-block;
-
     background-size: auto;
     background-repeat: no-repeat;
     background-size: 34px 12px;
@@ -230,7 +226,6 @@ useHead({
 }
 
 .fancybox__backdrop {
-    /* opacity: 0.9; */
     background: #dbdbdbe4;
 }
 
@@ -254,4 +249,5 @@ useHead({
 .list-enter-from {
     opacity: 0;
 
-}</style>
+}
+</style>
