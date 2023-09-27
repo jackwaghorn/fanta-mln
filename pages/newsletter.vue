@@ -39,7 +39,7 @@ useHead({
                     class="w-full border-b border-px border-primary py-3 focus:outline-none appearance-none text-center text-t"
                     type="email" name="mail" placeholder="E-mail" spellcheck="false" autocomplete="false" minlength="1" />
                 <input
-                    class="w-auto border hover:bg-primary hover:text-white hover:cursor-pointer border-primary border-px p-1 px-5 my-4"
+                    class="w-auto border hover:bg-primary hover:text-white hover:cursor-default border-primary border-px p-1 px-5 my-4"
                     type="button" value="Submit" />
             </div>
         </form>

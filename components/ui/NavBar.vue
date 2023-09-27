@@ -190,7 +190,7 @@ watch(open, () => {
         </NuxtLink>
     </header>
     <!-- Navigation -->
-    <header @click="open = !open" class="fixed top-0 right-0 hover:cursor-pointer">
+    <header @click="open = !open" class="fixed top-0 right-0 hover:cursor-default">
         <button class="absolute p-3 pt-7 right-0 top-0 flex flex-col items-center justify-center z-20">
 
             <div class="w-8">
