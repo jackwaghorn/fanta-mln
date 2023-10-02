@@ -35,61 +35,11 @@
           "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
         }
       },
-      "works": {
-        "type": "Group",
-        "config": {
-          "label": "Works",
-          "fields": {
-            "image": {
-              "type": "Image",
-              "config": {
-                "label": "Image",
-                "constraint": {},
-                "thumbnails": []
-              }
-            },
-            "text_box": {
-              "type": "StructuredText",
-              "config": {
-                "label": "Text Box",
-                "placeholder": "",
-                "allowTargetBlank": true,
-                "multi": "paragraph,strong,em,hyperlink"
-              }
-            }
-          }
-        }
-      },
-      "cv_text_box": {
-        "type": "StructuredText",
-        "config": {
-          "label": "CV text box",
-          "placeholder": "",
-          "allowTargetBlank": true,
-          "multi": "paragraph,hyperlink,strong,em,o-list-item,list-item"
-        }
-      },
-      "bibliography": {
-        "type": "StructuredText",
-        "config": {
-          "label": "Bibliography",
-          "placeholder": "",
-          "allowTargetBlank": true,
-          "multi": "paragraph,strong,em,hyperlink,list-item,o-list-item"
-        }
-      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",
         "config": {
-          "choices": {
-            "exhibition_slice": {
-              "type": "SharedSlice"
-            },
-            "elsewhere_slice": {
-              "type": "SharedSlice"
-            }
-          }
+          "choices": {}
         }
       }
     },
@@ -118,6 +68,79 @@
           "placeholder": "A title of the page used for social media and search engines"
         },
         "type": "Text"
+      }
+    },
+    "Works": {
+      "works": {
+        "type": "Group",
+        "config": {
+          "label": "Works",
+          "fields": {
+            "image": {
+              "type": "Image",
+              "config": {
+                "label": "Image",
+                "constraint": {},
+                "thumbnails": []
+              }
+            },
+            "caption": {
+              "type": "Text",
+              "config": {
+                "label": "Caption",
+                "placeholder": ""
+              }
+            }
+          }
+        }
+      }
+    },
+    "Exhibitions": {
+      "slices3": {
+        "type": "Slices",
+        "fieldset": "Slice Zone",
+        "config": {
+          "choices": {
+            "exhibition_slice": {
+              "type": "SharedSlice"
+            }
+          }
+        }
+      }
+    },
+    "Elsewhere": {
+      "slices4": {
+        "type": "Slices",
+        "fieldset": "Slice Zone",
+        "config": {
+          "choices": {
+            "elsewhere_slice": {
+              "type": "SharedSlice"
+            }
+          }
+        }
+      }
+    },
+    "CV": {
+      "cv_text": {
+        "type": "StructuredText",
+        "config": {
+          "label": "CV text box",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "multi": "paragraph,heading4,strong,em,hyperlink,list-item,o-list-item"
+        }
+      }
+    },
+    "Bibliography": {
+      "bibliography": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Bibliography",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "multi": "paragraph,preformatted,heading4,strong,em,hyperlink,list-item,o-list-item"
+        }
       }
     }
   }

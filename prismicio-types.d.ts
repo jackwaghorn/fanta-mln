@@ -4,6 +4,8 @@ import type * as prismic from "@prismicio/client";
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
+type ArtistDocumentDataSlicesSlice = never;
+
 /**
  * Item in *Artist → Works*
  */
@@ -19,17 +21,19 @@ export interface ArtistDocumentDataWorksItem {
   image: prismic.ImageField<never>;
 
   /**
-   * Text Box field in *Artist → Works*
+   * Caption field in *Artist → Works*
    *
-   * - **Field Type**: Rich Text
+   * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: artist.works[].text_box
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   * - **API ID Path**: artist.works[].caption
+   * - **Documentation**: https://prismic.io/docs/field#key-text
    */
-  text_box: prismic.RichTextField;
+  caption: prismic.KeyTextField;
 }
 
-type ArtistDocumentDataSlicesSlice = ExhibitionSliceSlice | ElsewhereSliceSlice;
+type ArtistDocumentDataSlices3Slice = ExhibitionSliceSlice;
+
+type ArtistDocumentDataSlices4Slice = ElsewhereSliceSlice;
 
 /**
  * Content for Artist documents
@@ -67,39 +71,6 @@ interface ArtistDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   extended_bio: prismic.RichTextField;
-
-  /**
-   * Works field in *Artist*
-   *
-   * - **Field Type**: Group
-   * - **Placeholder**: *None*
-   * - **API ID Path**: artist.works[]
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#group
-   */
-  works: prismic.GroupField<Simplify<ArtistDocumentDataWorksItem>>;
-
-  /**
-   * CV text box field in *Artist*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: artist.cv_text_box
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-   */
-  cv_text_box: prismic.RichTextField;
-
-  /**
-   * Bibliography field in *Artist*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: artist.bibliography
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-   */
-  bibliography: prismic.RichTextField;
 
   /**
    * Slice Zone field in *Artist*
@@ -142,7 +113,57 @@ interface ArtistDocumentData {
    * - **Tab**: SEO & Metadata
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
-  meta_title: prismic.KeyTextField;
+  meta_title: prismic.KeyTextField
+  /**
+   * Works field in *Artist*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: artist.works[]
+   * - **Tab**: Works
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */;
+  works: prismic.GroupField<Simplify<ArtistDocumentDataWorksItem>>
+  /**
+   * Slice Zone field in *Artist*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: artist.slices3[]
+   * - **Tab**: Exhibitions
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */;
+  slices3: prismic.SliceZone<ArtistDocumentDataSlices3Slice>
+  /**
+   * Slice Zone field in *Artist*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: artist.slices4[]
+   * - **Tab**: Elsewhere
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */;
+  slices4: prismic.SliceZone<ArtistDocumentDataSlices4Slice>
+  /**
+   * CV text box field in *Artist*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: artist.cv_text
+   * - **Tab**: CV
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */;
+  cv_text: prismic.RichTextField
+  /**
+   * Bibliography field in *Artist*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: artist.bibliography
+   * - **Tab**: Bibliography
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */;
+  bibliography: prismic.RichTextField;
 }
 
 /**
@@ -1257,6 +1278,26 @@ export interface ElsewhereSliceSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#date
    */
   date_to: prismic.DateField;
+
+  /**
+   * Press Release field in *ElsewhereSlice → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: elsewhere_slice.primary.press_release
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  press_release: prismic.LinkField;
+
+  /**
+   * Press field in *ElsewhereSlice → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: elsewhere_slice.primary.press
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  press: prismic.RichTextField;
 }
 
 /**
@@ -1286,12 +1327,12 @@ export interface ElsewhereSliceSliceDefaultItem {
   /**
    * Caption field in *ElsewhereSlice → Items*
    *
-   * - **Field Type**: Rich Text
+   * - **Field Type**: Text
    * - **Placeholder**: *None*
    * - **API ID Path**: elsewhere_slice.items[].caption
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
    */
-  caption: prismic.RichTextField;
+  caption: prismic.KeyTextField;
 }
 
 /**
@@ -1357,6 +1398,26 @@ export interface ExhibitionSliceSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#date
    */
   date_to: prismic.DateField;
+
+  /**
+   * Press Release field in *ExhibitionSlice → Primary*
+   *
+   * - **Field Type**: Link to Media
+   * - **Placeholder**: *None*
+   * - **API ID Path**: exhibition_slice.primary.press_release
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  press_release: prismic.LinkToMediaField;
+
+  /**
+   * Press field in *ExhibitionSlice → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: exhibition_slice.primary.press
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  press: prismic.RichTextField;
 }
 
 /**
@@ -1384,14 +1445,14 @@ export interface ExhibitionSliceSliceDefaultItem {
   video_embed: prismic.EmbedField;
 
   /**
-   * Media caption field in *ExhibitionSlice → Items*
+   * Caption field in *ExhibitionSlice → Items*
    *
-   * - **Field Type**: Rich Text
+   * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: exhibition_slice.items[].media_caption
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   * - **API ID Path**: exhibition_slice.items[].caption
+   * - **Documentation**: https://prismic.io/docs/field#key-text
    */
-  media_caption: prismic.RichTextField;
+  caption: prismic.KeyTextField;
 }
 
 /**
@@ -1481,8 +1542,10 @@ declare module "@prismicio/client" {
     export type {
       ArtistDocument,
       ArtistDocumentData,
-      ArtistDocumentDataWorksItem,
       ArtistDocumentDataSlicesSlice,
+      ArtistDocumentDataWorksItem,
+      ArtistDocumentDataSlices3Slice,
+      ArtistDocumentDataSlices4Slice,
       EditionDocument,
       EditionDocumentData,
       EditionDocumentDataGalleryItem,

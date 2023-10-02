@@ -6,7 +6,7 @@ const { data: page } = useAsyncData("[artist-uid]", () =>
 );
 
 const expoData = computed(() => {
-    return page.value?.data.slices.find(slice => slice.id === route.params.id) as any;
+    return page.value?.data.slices3.find(slice => slice.id === route.params.id) as any;
 })
 
 
@@ -29,7 +29,7 @@ useHead({
         month: 'short', day: 'numeric', year:
             'numeric'
     })}
-                `)" release="Release" press="Press" :back="'/artists/' + route.params.uid + '/exhibitions'">
+                `)" :release="expoData.primary.press_release.url" :press="`/artists/${route.params.uid}/exhibitions/${route.params.id}/press`" :back="'/artists/' + route.params.uid + '/exhibitions'">
 
         <UiLightBox :gallery="expoData.items" />
 

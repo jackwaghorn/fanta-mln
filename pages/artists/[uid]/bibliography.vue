@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { htmlSerializer } from '~/htmlSerializer';
 const prismic = usePrismic();
 const route = useRoute();
 const { data: page } = useAsyncData("[artist-uid]", () =>
@@ -22,7 +23,7 @@ useHead({
         :links="[{ title: 'Works', url: `/artists/${route.params.uid}/works` }, { title: 'Exhibitions', url: `/artists/${route.params.uid}/exhibitions` }, { title: 'Elsewhere', url: `/artists/${route.params.uid}/elsewhere`},{ title: 'CV', url: `/artists/${route.params.uid}/cv`}, {title: 'Bibliography', url: `/artists/${route.params.uid}/bibliography`}]"
         back="/artists">
  
-        <PrismicRichText class="text-st" :field="page?.data?.bibliography" />
+        <PrismicRichText class="text-st" :field="page?.data?.bibliography" :serializer="htmlSerializer" />
 
    </NuxtLayout>
   </div>

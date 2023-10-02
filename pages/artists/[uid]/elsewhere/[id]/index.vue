@@ -6,9 +6,9 @@ const { data: page } = useAsyncData("[artist-uid]", () =>
 );
 
 const expoData = computed(() => {
-    return page.value?.data.slices.find(slice => slice.id === route.params.id) as any;
-})
+    return page.value?.data.slices4.find((slice: { id: string }) => slice.id === route.params.id) as any;
 
+})
 
 useHead({
     title: "Fanta-MLN | " + page.value?.data.name,
@@ -29,7 +29,7 @@ useHead({
         month: 'short', day: 'numeric', year:
             'numeric'
     })}
-                `)" release="Release" press="Press" :back="'/artists/' + route.params.uid + '/elsewhere'">
+                `)" :release="expoData.primary.press_release.url" :press="`/artists/${route.params.uid}/elsewhere/${route.params.id}/press`" :back="'/artists/' + route.params.uid + '/elsewhere'">
        
            <UiLightBox :gallery="expoData.items"/>
      

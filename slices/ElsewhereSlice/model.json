@@ -32,6 +32,23 @@
             "label": "Date to",
             "placeholder": ""
           }
+        },
+        "press_release": {
+          "type": "Link",
+          "config": {
+            "label": "Press Release",
+            "placeholder": "",
+            "select": null
+          }
+        },
+        "press": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Press",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,heading4,strong,em,hyperlink,list-item,o-list-item"
+          }
         }
       },
       "items": {
@@ -51,12 +68,10 @@
           }
         },
         "caption": {
-          "type": "StructuredText",
+          "type": "Text",
           "config": {
             "label": "Caption",
-            "placeholder": "",
-            "allowTargetBlank": true,
-            "single": "paragraph,hyperlink,strong,em"
+            "placeholder": ""
           }
         }
       }

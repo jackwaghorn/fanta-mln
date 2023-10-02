@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { htmlSerializer } from '~/htmlSerializer';
 const prismic = usePrismic();
 const route = useRoute();
 const { data: page } = useAsyncData("[exhibition-uid]", () =>
@@ -31,7 +32,7 @@ useHead({
             <section class="text-st">
                 <div class="pb-5" v-for="(press, index) in page?.data.press">
 
-                    <PrismicLink :field="press.link">
+                    <PrismicLink :field="press.link" target="_blank" >
                         <PrismicRichText :field="press.article_title" />
                     </PrismicLink>
 

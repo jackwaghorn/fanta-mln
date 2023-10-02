@@ -236,7 +236,7 @@ watch(open, () => {
     content: attr(data-text);
     /* Use a data attribute to store the button text */
     position: absolute;
-    top: 0.03rem;
+    top: -0.04rem;
     left: 0;
     bottom: 0;
     right: 0;
