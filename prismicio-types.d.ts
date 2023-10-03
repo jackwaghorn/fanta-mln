@@ -179,6 +179,23 @@ export type ArtistDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<Simplify<ArtistDocumentData>, "artist", Lang>;
 
 /**
+ * Item in *Edition → Authors*
+ */
+export interface EditionDocumentDataAuthorsItem {
+  /**
+   * Author field in *Edition → Authors*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: edition.authors[].author
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  author: prismic.KeyTextField;
+}
+
+type EditionDocumentDataSlicesSlice = never;
+
+/**
  * Item in *Edition → Gallery*
  */
 export interface EditionDocumentDataGalleryItem {
@@ -192,8 +209,6 @@ export interface EditionDocumentDataGalleryItem {
    */
   image: prismic.ImageField<never>;
 }
-
-type EditionDocumentDataSlicesSlice = never;
 
 /**
  * Content for Edition documents
@@ -211,15 +226,15 @@ interface EditionDocumentData {
   title: prismic.KeyTextField;
 
   /**
-   * Author field in *Edition*
+   * Authors field in *Edition*
    *
-   * - **Field Type**: Text
+   * - **Field Type**: Group
    * - **Placeholder**: *None*
-   * - **API ID Path**: edition.author
+   * - **API ID Path**: edition.authors[]
    * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Documentation**: https://prismic.io/docs/field#group
    */
-  author: prismic.KeyTextField;
+  authors: prismic.GroupField<Simplify<EditionDocumentDataAuthorsItem>>;
 
   /**
    * Specifications field in *Edition*
@@ -233,17 +248,6 @@ interface EditionDocumentData {
   Specifications: prismic.RichTextField;
 
   /**
-   * Download link field in *Edition*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
-   * - **API ID Path**: edition.download_link
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
-   */
-  download_link: prismic.LinkField;
-
-  /**
    * Extended description field in *Edition*
    *
    * - **Field Type**: Rich Text
@@ -255,15 +259,15 @@ interface EditionDocumentData {
   extended_description: prismic.RichTextField;
 
   /**
-   * Gallery field in *Edition*
+   * Download link field in *Edition*
    *
-   * - **Field Type**: Group
+   * - **Field Type**: Link
    * - **Placeholder**: *None*
-   * - **API ID Path**: edition.gallery[]
+   * - **API ID Path**: edition.download_link
    * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#group
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  gallery: prismic.GroupField<Simplify<EditionDocumentDataGalleryItem>>;
+  download_link: prismic.LinkField;
 
   /**
    * Slice Zone field in *Edition*
@@ -306,7 +310,17 @@ interface EditionDocumentData {
    * - **Tab**: SEO & Metadata
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
-  meta_title: prismic.KeyTextField;
+  meta_title: prismic.KeyTextField
+  /**
+   * Gallery field in *Edition*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: edition.gallery[]
+   * - **Tab**: Gallery
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */;
+  gallery: prismic.GroupField<Simplify<EditionDocumentDataGalleryItem>>;
 }
 
 /**
@@ -324,6 +338,8 @@ export type EditionDocument<Lang extends string = string> =
     "edition",
     Lang
   >;
+
+type ExhibitionDocumentDataSlicesSlice = never;
 
 /**
  * Item in *Exhibition → Gallery*
@@ -361,38 +377,11 @@ export interface ExhibitionDocumentDataGalleryItem {
 }
 
 /**
- * Item in *Exhibition → Press*
- */
-export interface ExhibitionDocumentDataPressItem {
-  /**
-   * Article title field in *Exhibition → Press*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: exhibition.press[].article_title
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-   */
-  article_title: prismic.RichTextField;
-
-  /**
-   * Link field in *Exhibition → Press*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
-   * - **API ID Path**: exhibition.press[].link
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
-   */
-  link: prismic.LinkField;
-}
-
-type ExhibitionDocumentDataSlicesSlice = never;
-
-/**
  * Content for Exhibition documents
  */
 interface ExhibitionDocumentData {
   /**
-   * TItle field in *Exhibition*
+   * Title field in *Exhibition*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
@@ -436,39 +425,6 @@ interface ExhibitionDocumentData {
   date_to: prismic.DateField;
 
   /**
-   * Press Release field in *Exhibition*
-   *
-   * - **Field Type**: Link to Media
-   * - **Placeholder**: *None*
-   * - **API ID Path**: exhibition.press_release
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
-   */
-  press_release: prismic.LinkToMediaField;
-
-  /**
-   * Gallery field in *Exhibition*
-   *
-   * - **Field Type**: Group
-   * - **Placeholder**: *None*
-   * - **API ID Path**: exhibition.gallery[]
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#group
-   */
-  gallery: prismic.GroupField<Simplify<ExhibitionDocumentDataGalleryItem>>;
-
-  /**
-   * Press field in *Exhibition*
-   *
-   * - **Field Type**: Group
-   * - **Placeholder**: *None*
-   * - **API ID Path**: exhibition.press[]
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#group
-   */
-  press: prismic.GroupField<Simplify<ExhibitionDocumentDataPressItem>>;
-
-  /**
    * Slice Zone field in *Exhibition*
    *
    * - **Field Type**: Slice Zone
@@ -509,7 +465,37 @@ interface ExhibitionDocumentData {
    * - **Tab**: SEO & Metadata
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
-  meta_title: prismic.KeyTextField;
+  meta_title: prismic.KeyTextField
+  /**
+   * Gallery field in *Exhibition*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: exhibition.gallery[]
+   * - **Tab**: Gallery
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */;
+  gallery: prismic.GroupField<Simplify<ExhibitionDocumentDataGalleryItem>>
+  /**
+   * Press Release field in *Exhibition*
+   *
+   * - **Field Type**: Link to Media
+   * - **Placeholder**: *None*
+   * - **API ID Path**: exhibition.press_release
+   * - **Tab**: Press Release
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */;
+  press_release: prismic.LinkToMediaField
+  /**
+   * Press field in *Exhibition*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: exhibition.press
+   * - **Tab**: Press
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */;
+  press: prismic.RichTextField;
 }
 
 /**
@@ -527,6 +513,8 @@ export type ExhibitionDocument<Lang extends string = string> =
     "exhibition",
     Lang
   >;
+
+type FairDocumentDataSlicesSlice = never;
 
 /**
  * Item in *Fair → Gallery*
@@ -553,17 +541,15 @@ export interface FairDocumentDataGalleryItem {
   video_embed: prismic.EmbedField;
 
   /**
-   * Media caption field in *Fair → Gallery*
+   * Caption field in *Fair → Gallery*
    *
-   * - **Field Type**: Rich Text
+   * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: fair.gallery[].media_caption
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   * - **API ID Path**: fair.gallery[].caption
+   * - **Documentation**: https://prismic.io/docs/field#key-text
    */
-  media_caption: prismic.RichTextField;
+  caption: prismic.KeyTextField;
 }
-
-type FairDocumentDataSlicesSlice = never;
 
 /**
  * Content for Fair documents
@@ -625,28 +611,6 @@ interface FairDocumentData {
   exhibition_views: prismic.KeyTextField;
 
   /**
-   * Press kit field in *Fair*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
-   * - **API ID Path**: fair.press_kit
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
-   */
-  press_kit: prismic.LinkField;
-
-  /**
-   * Gallery field in *Fair*
-   *
-   * - **Field Type**: Group
-   * - **Placeholder**: *None*
-   * - **API ID Path**: fair.gallery[]
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#group
-   */
-  gallery: prismic.GroupField<Simplify<FairDocumentDataGalleryItem>>;
-
-  /**
    * Slice Zone field in *Fair*
    *
    * - **Field Type**: Slice Zone
@@ -687,7 +651,27 @@ interface FairDocumentData {
    * - **Tab**: SEO & Metadata
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
-  meta_title: prismic.KeyTextField;
+  meta_title: prismic.KeyTextField
+  /**
+   * Gallery field in *Fair*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: fair.gallery[]
+   * - **Tab**: Gallery
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */;
+  gallery: prismic.GroupField<Simplify<FairDocumentDataGalleryItem>>
+  /**
+   * Press Release field in *Fair*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: fair.press_release
+   * - **Tab**: Press Release
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */;
+  press_release: prismic.LinkField;
 }
 
 /**
@@ -1548,17 +1532,17 @@ declare module "@prismicio/client" {
       ArtistDocumentDataSlices4Slice,
       EditionDocument,
       EditionDocumentData,
-      EditionDocumentDataGalleryItem,
+      EditionDocumentDataAuthorsItem,
       EditionDocumentDataSlicesSlice,
+      EditionDocumentDataGalleryItem,
       ExhibitionDocument,
       ExhibitionDocumentData,
-      ExhibitionDocumentDataGalleryItem,
-      ExhibitionDocumentDataPressItem,
       ExhibitionDocumentDataSlicesSlice,
+      ExhibitionDocumentDataGalleryItem,
       FairDocument,
       FairDocumentData,
-      FairDocumentDataGalleryItem,
       FairDocumentDataSlicesSlice,
+      FairDocumentDataGalleryItem,
       HomepageDocument,
       HomepageDocumentData,
       HomepageDocumentDataSlicesSlice,

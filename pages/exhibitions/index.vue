@@ -1,25 +1,24 @@
 <script setup lang="ts">
 const prismic = usePrismic();
 const { data: page } = useAsyncData("[exhibition]", () =>
-    prismic.client.getByType("exhibition")
+    prismic.client.getByType("exhibition"), {
+    transform: (res) => {
+        const categorizedItems: { year: number; items: any[] }[] = [];
+        res.results.forEach((obj) => {
+            const year = new Date(String(obj.data.date_from)).getFullYear();
+            const yearCategory = categorizedItems.find((category) => category.year === year);
+            if (!yearCategory) {
+                categorizedItems.push({ year: year, items: [obj] });
+            } else {
+                yearCategory.items.push(obj);
+            }
+        });
+
+        const sortedCategories = categorizedItems.sort((a, b) => b.year - a.year);
+        return sortedCategories;
+    }
+}
 );
-const categorizeAndSortByDate = computed(() => {
-    const categorizedItems: { year: number; items: any[] }[] = [];
-    page.value?.results.forEach((obj) => {
-        const year = new Date(String(obj.data.date_from)).getFullYear();
-
-        const yearCategory = categorizedItems.find((category) => category.year === year);
-
-        if (!yearCategory) {
-            categorizedItems.push({ year: year, items: [obj] });
-        } else {
-            yearCategory.items.push(obj);
-        }
-    });
-
-    const sortedCategories = categorizedItems.sort((a, b) => b.year - a.year);
-    return sortedCategories;
-});
 
 useHead({
     title: "Fanta-MLN | Exhibitions",
@@ -29,10 +28,11 @@ useHead({
 <template>
     <div>
         <NuxtLayout title="Exhibitions">
-            <div v-for="(year, index) in categorizeAndSortByDate" :key="index"
+
+            <div v-for="(year, index) in page?? []" :key="index"
                 class="w-full pb-5 grid grid-cols-2 xl:grid-cols-3 gap-3 md:gap-5">
                 <div class="pb-5 text-st w-full col-span-2 xl:col-span-3">
-                    {{ year.year }}
+                    {{ year?.year?? '' }}
                 </div>
                 <NuxtLink :to="'/exhibitions/' + news.uid" v-for="(news, index) in year?.items || []" :key="index"
                     class="pb-2 md:pb-5 text-st col-span-1 group">

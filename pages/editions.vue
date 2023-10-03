@@ -16,9 +16,12 @@ const { data: page } = useAsyncData("[edition]", () =>
 );
 
 const uniqueAuthors = computed(() => {
-    const names = page.value?.results.map((author) => {
-        return author?.data.author;
-    });
+    const names = page.value?.results.map((book) => {
+        return book?.data?.authors.map((author) => {
+            return author?.author;
+        })
+    }).flat();
+
     return names?.filter((value, index, self) => {
         return self.indexOf(value) === index;
     });
@@ -26,13 +29,16 @@ const uniqueAuthors = computed(() => {
 })
 
 const filters = ref([]);
+
 const filteredAuthors = computed(() => {
     const filtered = page.value?.results || [];
     if (filters.value.length === 0) {
         return filtered;
     } else {
-        return filtered.filter((author) => {
-            return filters.value.some((filter) => filter === author?.data.author);
+        return filtered.filter((book) => {
+            return book.data.authors.some((author) => {
+                return filters.value.includes(author?.author as never);
+            });
         });
     }
 });
@@ -135,6 +141,8 @@ useHead({
                                         <div>
                                             <p class="pb-5 text-st">{{ author?.data?.title }}</p>
                                             <PrismicRichText class="text-st" :field="author?.data.Specifications" />
+                                            <PrismicLink target="_blank" class="text-st underline" :field="author?.data.download_link">{{author?.data.download_link.url ? 'Download': ''}}</PrismicLink>
+
                                         </div>
                                     </div>
                                     <div class="col-span-1 md:h-full md:flex items-center pt-5 md:pt-0">

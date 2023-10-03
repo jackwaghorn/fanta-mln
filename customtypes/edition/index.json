@@ -19,11 +19,19 @@
           "placeholder": ""
         }
       },
-      "author": {
-        "type": "Text",
+      "authors": {
+        "type": "Group",
         "config": {
-          "label": "Author",
-          "placeholder": ""
+          "label": "Authors",
+          "fields": {
+            "author": {
+              "type": "Text",
+              "config": {
+                "label": "Author",
+                "placeholder": ""
+              }
+            }
+          }
         }
       },
       "Specifications": {
@@ -35,14 +43,6 @@
           "multi": "paragraph,strong,em,hyperlink"
         }
       },
-      "download_link": {
-        "type": "Link",
-        "config": {
-          "label": "Download link",
-          "placeholder": "",
-          "select": null
-        }
-      },
       "extended_description": {
         "type": "StructuredText",
         "config": {
@@ -52,20 +52,12 @@
           "single": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
         }
       },
-      "gallery": {
-        "type": "Group",
+      "download_link": {
+        "type": "Link",
         "config": {
-          "label": "Gallery",
-          "fields": {
-            "image": {
-              "type": "Image",
-              "config": {
-                "label": "Image",
-                "constraint": {},
-                "thumbnails": []
-              }
-            }
-          }
+          "label": "Download link",
+          "placeholder": "",
+          "select": null
         }
       },
       "slices": {
@@ -101,6 +93,24 @@
           "placeholder": "A title of the page used for social media and search engines"
         },
         "type": "Text"
+      }
+    },
+    "Gallery": {
+      "gallery": {
+        "type": "Group",
+        "config": {
+          "label": "Gallery",
+          "fields": {
+            "image": {
+              "type": "Image",
+              "config": {
+                "label": "Image",
+                "constraint": {},
+                "thumbnails": []
+              }
+            }
+          }
+        }
       }
     }
   }
