@@ -29,15 +29,15 @@ useHead({
 
 
 
-            <section class="text-st">
-                <div class="pb-5" v-for="(press, index) in page?.data.press">
-
-                    <PrismicLink :field="press.link" target="_blank" >
-                        <PrismicRichText :field="press.article_title" />
-                    </PrismicLink>
+            <section>
 
 
-                </div>
+
+                <PrismicRichText class="text-st" :field="page?.data.press" :serializer="htmlSerializer" />
+
+
+
+
 
             </section>
         </NuxtLayout>
