@@ -141,7 +141,7 @@ useHead({
                                         <div>
                                             <p class="pb-5 text-st">{{ author?.data?.title }}</p>
                                             <PrismicRichText class="text-st" :field="author?.data.Specifications" />
-                                            <PrismicLink target="_blank" class="text-st underline" :field="author?.data.download_link">{{author?.data.download_link.url ? 'Download': ''}}</PrismicLink>
+                                            <PrismicLink target="_blank" class="text-st underline decoration-1" :field="author?.data.download_link">{{author?.data.download_link.url ? 'Download': ''}}</PrismicLink>
 
                                         </div>
                                     </div>

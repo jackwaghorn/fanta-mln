@@ -29,18 +29,21 @@ useHead({
     <div>
         <NuxtLayout title="Exhibitions">
 
-            <div v-for="(year, index) in page?? []" :key="index"
+            <div v-for="(year, index) in page ?? []" :key="index"
                 class="w-full pb-5 grid grid-cols-2 xl:grid-cols-3 gap-3 md:gap-5">
                 <div class="pb-5 text-st w-full col-span-2 xl:col-span-3">
-                    {{ year?.year?? '' }}
+                    {{ year?.year ?? '' }}
                 </div>
                 <NuxtLink :to="'/exhibitions/' + news.uid" v-for="(news, index) in year?.items || []" :key="index"
                     class="pb-2 md:pb-5 text-st col-span-1 group">
 
                     <div class="flex flex-wrap w-full">
-                        <NuxtImg v-if="news.data.gallery[0].image.url"
-                            class="object-cover aspect-[5/3] w-full group-hover:opacity-75 transition duration-100"
-                            :src="news.data.gallery[0].image.url" :height="news.data.gallery[0].image.dimensions.height"
+                        <img v-if="news.data.gallery[0].image.url"
+                            class="object-cover aspect-[5/3] w-full group-hover:opacity-75 transition duration-100 lazyload"
+                            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
+                            :data-src="news.data.gallery[0].image.url"
+                            :data-srcset="`${news.data.gallery[0].image.url}&?&w=500&fit=crop 1024w, ${news.data.gallery[0].image.url}&?&w=384&fit=crop 640w,`"
+                            sizes="(min-width: 640px) 50vw, 33vw" :height="news.data.gallery[0].image.dimensions.height"
                             :width="news.data.gallery[0].image.dimensions.width" />
 
                         <NuxtImg v-else
