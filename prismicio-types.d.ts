@@ -764,18 +764,28 @@ export type HomepageDocument<Lang extends string = string> =
   >;
 
 /**
- * Item in *Info → Links*
+ * Item in *Info → Contact Links*
  */
-export interface InfoDocumentDataLinksItem {
+export interface InfoDocumentDataContactLinksItem {
   /**
-   * Link field in *Info → Links*
+   * Title field in *Info → Contact Links*
    *
-   * - **Field Type**: Rich Text
+   * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: info.links[].link
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   * - **API ID Path**: info.contact_links[].title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
    */
-  link: prismic.RichTextField;
+  title: prismic.KeyTextField;
+
+  /**
+   * Address field in *Info → Contact Links*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: info.contact_links[].address
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  address: prismic.KeyTextField;
 }
 
 type InfoDocumentDataSlicesSlice = never;
@@ -807,6 +817,17 @@ interface InfoDocumentData {
   contact: prismic.RichTextField;
 
   /**
+   * Contact Links field in *Info*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: info.contact_links[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  contact_links: prismic.GroupField<Simplify<InfoDocumentDataContactLinksItem>>;
+
+  /**
    * Hours field in *Info*
    *
    * - **Field Type**: Rich Text
@@ -820,13 +841,13 @@ interface InfoDocumentData {
   /**
    * Links field in *Info*
    *
-   * - **Field Type**: Group
+   * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: info.links[]
+   * - **API ID Path**: info.links
    * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#group
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
-  links: prismic.GroupField<Simplify<InfoDocumentDataLinksItem>>;
+  links: prismic.RichTextField;
 
   /**
    * Slice Zone field in *Info*
@@ -1548,7 +1569,7 @@ declare module "@prismicio/client" {
       HomepageDocumentDataSlicesSlice,
       InfoDocument,
       InfoDocumentData,
-      InfoDocumentDataLinksItem,
+      InfoDocumentDataContactLinksItem,
       InfoDocumentDataSlicesSlice,
       NewsDocument,
       NewsDocumentData,
