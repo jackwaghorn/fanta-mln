@@ -23,9 +23,9 @@ useHead({
                     <PrismicRichText class="pb-5 text-st" :field="page?.data.address" />
                     <PrismicRichText class="pb-5 text-st" :field="page?.data.contact" />
                     <table class="w-full pb-5 text-st block">
-                        <tbody class="w-full">
+                        <tbody class="w-full ">
                             <tr v-for="(link, index) in page?.data.contact_links" :key="'contact-' + index">
-                                <th class="text-start pe-14">{{ link.title }}</th>
+                                <th class="text-start pe-14 font-normal">{{ link.title }}</th>
                                 <td>{{ link.address }}</td>
                             </tr>
                         </tbody>
