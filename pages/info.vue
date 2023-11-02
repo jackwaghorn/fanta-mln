@@ -26,7 +26,7 @@ useHead({
                         <tbody class="w-full ">
                             <tr v-for="(link, index) in page?.data.contact_links" :key="'contact-' + index">
                                 <th class="text-start pe-14 font-normal">{{ link.title }}</th>
-                                <td>{{ link.address }}</td>
+                                <td >{{ link.address }}</td>
                             </tr>
                         </tbody>
                     </table>
