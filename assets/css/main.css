@@ -22,6 +22,7 @@
   html {
     font-family: 'Studio Pro', serif;
     font-weight: normal;
-    @apply text-primary;
+    @apply text-primary
+    ;
   }
 }
