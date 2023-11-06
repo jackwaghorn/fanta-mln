@@ -22,8 +22,6 @@
   html {
     font-family: 'Studio Pro', serif;
     font-weight: normal;
-    @apply text-primary
-    tabular-nums
-    ;
+    @apply text-primary;
   }
 }
