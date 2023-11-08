@@ -11,5 +11,4 @@ export const components = defineSliceZoneComponents({
   exhibition_slice: defineAsyncComponent(
     () => import("./ExhibitionSlice/index.vue")
   ),
-  test_section: defineAsyncComponent(() => import("./TestSection/index.vue")),
 });

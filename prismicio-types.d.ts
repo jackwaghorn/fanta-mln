@@ -686,83 +686,6 @@ interface FairDocumentData {
 export type FairDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<Simplify<FairDocumentData>, "fair", Lang>;
 
-type HomepageDocumentDataSlicesSlice = TestSectionSlice;
-
-/**
- * Content for Homepage documents
- */
-interface HomepageDocumentData {
-  /**
-   * Sample Text field in *Homepage*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: homepage.sample_text
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-   */
-  sample_text: prismic.RichTextField;
-
-  /**
-   * Slice Zone field in *Homepage*
-   *
-   * - **Field Type**: Slice Zone
-   * - **Placeholder**: *None*
-   * - **API ID Path**: homepage.slices[]
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#slices
-   */
-  slices: prismic.SliceZone<HomepageDocumentDataSlicesSlice>
-  /**
-   * Meta Description field in *Homepage*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: A brief summary of the page
-   * - **API ID Path**: homepage.meta_description
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */;
-  meta_description: prismic.KeyTextField;
-
-  /**
-   * Meta Image field in *Homepage*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: homepage.meta_image
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/field#image
-   */
-  meta_image: prismic.ImageField<never>;
-
-  /**
-   * Meta Title field in *Homepage*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: A title of the page used for social media and search engines
-   * - **API ID Path**: homepage.meta_title
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  meta_title: prismic.KeyTextField;
-}
-
-/**
- * Homepage document from Prismic
- *
- * - **API ID**: `homepage`
- * - **Repeatable**: `false`
- * - **Documentation**: https://prismic.io/docs/custom-types
- *
- * @typeParam Lang - Language API ID of the document.
- */
-export type HomepageDocument<Lang extends string = string> =
-  prismic.PrismicDocumentWithoutUID<
-    Simplify<HomepageDocumentData>,
-    "homepage",
-    Lang
-  >;
-
 /**
  * Item in *Info → Contact Links*
  */
@@ -1115,7 +1038,6 @@ export type AllDocumentTypes =
   | EditionDocument
   | ExhibitionDocument
   | FairDocument
-  | HomepageDocument
   | InfoDocument
   | NewsDocument
   | NewsletterDocument;
@@ -1490,51 +1412,6 @@ export type ExhibitionSliceSlice = prismic.SharedSlice<
   ExhibitionSliceSliceVariation
 >;
 
-/**
- * Primary content in *TestSection → Primary*
- */
-export interface TestSectionSliceDefaultPrimary {
-  /**
-   * Text Box field in *TestSection → Primary*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: test_section.primary.text_box
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-   */
-  text_box: prismic.RichTextField;
-}
-
-/**
- * Default variation for TestSection Slice
- *
- * - **API ID**: `default`
- * - **Description**: Default
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type TestSectionSliceDefault = prismic.SharedSliceVariation<
-  "default",
-  Simplify<TestSectionSliceDefaultPrimary>,
-  never
->;
-
-/**
- * Slice variation for *TestSection*
- */
-type TestSectionSliceVariation = TestSectionSliceDefault;
-
-/**
- * TestSection Shared Slice
- *
- * - **API ID**: `test_section`
- * - **Description**: TestSection
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type TestSectionSlice = prismic.SharedSlice<
-  "test_section",
-  TestSectionSliceVariation
->;
-
 declare module "@prismicio/client" {
   interface CreateClient {
     (
@@ -1564,9 +1441,6 @@ declare module "@prismicio/client" {
       FairDocumentData,
       FairDocumentDataSlicesSlice,
       FairDocumentDataGalleryItem,
-      HomepageDocument,
-      HomepageDocumentData,
-      HomepageDocumentDataSlicesSlice,
       InfoDocument,
       InfoDocumentData,
       InfoDocumentDataContactLinksItem,
@@ -1594,10 +1468,6 @@ declare module "@prismicio/client" {
       ExhibitionSliceSliceDefaultItem,
       ExhibitionSliceSliceVariation,
       ExhibitionSliceSliceDefault,
-      TestSectionSlice,
-      TestSectionSliceDefaultPrimary,
-      TestSectionSliceVariation,
-      TestSectionSliceDefault,
     };
   }
 }
