@@ -20,7 +20,7 @@
 
 @layer base {
   html {
-    font-family: 'Studio Pro', serif;
+    font-family: 'Studio Pro', sans-serif;
     font-weight: normal;
     @apply text-primary
     ;

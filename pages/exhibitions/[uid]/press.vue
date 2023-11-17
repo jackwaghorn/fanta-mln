@@ -15,7 +15,6 @@ useHead({
         },
     ],
 });
-
 </script>
 
 <template>
@@ -26,8 +25,6 @@ useHead({
         })}
                 `)" :release="page?.data.press_release.url" :press="`/exhibitions/${page?.uid}/press`"
             :back="`/exhibitions/${page?.uid}`">
-
-
 
             <section>
 

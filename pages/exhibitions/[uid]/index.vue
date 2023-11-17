@@ -15,6 +15,15 @@ useHead({
     ],
 });
 
+const optionalPressLink = computed(() => {
+    if (page?.value?.data?.press[0] && page?.value?.data?.press[0]?.text) {
+        return `/exhibitions/${page?.value.uid}/press`
+    } else {
+        return null
+    }
+})
+
+
 </script>
 
 <template>
@@ -23,7 +32,7 @@ useHead({
             month: 'short', day: 'numeric', year:
                 'numeric'
         })}
-                `)" :release="page?.data.press_release.url" :press="`/exhibitions/${page?.uid}/press`"
+                `)" :release="page?.data.press_release.url" :press="optionalPressLink"
             back="/exhibitions">
 
 

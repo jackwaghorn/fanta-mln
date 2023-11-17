@@ -19,6 +19,13 @@ useHead({
         },
     ],
 });
+const optionalPressLink = computed(() => {
+    if (expoData?.value.primary?.press[0] && expoData?.value.primary?.press[0]?.text) {
+        return `/artists/${route.params.uid}/exhibitions/${route.params.id}/press`
+    } else {
+        return null
+    }
+})
 </script>
 
 <template>
@@ -29,7 +36,7 @@ useHead({
         month: 'short', day: 'numeric', year:
             'numeric'
     })}
-                `)" :release="expoData.primary.press_release.url" :press="`/artists/${route.params.uid}/exhibitions/${route.params.id}/press`" :back="'/artists/' + route.params.uid + '/exhibitions'">
+                `)" :release="expoData.primary.press_release.url" :press="optionalPressLink" :back="'/artists/' + route.params.uid + '/exhibitions'">
 
         <UiLightBox :gallery="expoData.items" />
 

@@ -36,19 +36,21 @@ useHead({
                 </div>
                 <NuxtLink :to="'/exhibitions/' + news.uid" v-for="(news, index) in year?.items || []" :key="index"
                     class="pb-2 md:pb-5 text-st col-span-1 group">
-
                     <div class="flex flex-wrap w-full">
-                        <img v-if="news.data.gallery[0].image.url"
+                        <img v-if="news?.data?.gallery[0]?.image?.url"
                             class="object-cover aspect-[5/3] w-full group-hover:opacity-75 transition duration-100 lazyload"
                             src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
-                            :data-src="news.data.gallery[0].image.url"
-                            :data-srcset="`${news.data.gallery[0].image.url}&?&w=500&fit=crop 1024w, ${news.data.gallery[0].image.url}&?&w=384&fit=crop 640w,`"
+                            :data-src="news?.data?.gallery[0]?.image?.url"
+                            :data-srcset="`${news?.data?.gallery[0]?.image?.url}&?&w=700&fit=crop 1024w, ${news?.data?.gallery[0]?.image?.url}&?&w=600&fit=crop 640w,`"
                             sizes="(min-width: 640px) 50vw, 33vw" :height="news.data.gallery[0].image.dimensions.height"
                             :width="news.data.gallery[0].image.dimensions.width" />
 
-                        <NuxtImg v-else
+                        <NuxtImg v-else-if="news?.data?.gallery[0]?.video_embed?.thumbnail_url"
                             class="object-cover aspect-[5/3] w-full group-hover:opacity-75 transition duration-100"
                             :src="news.data.gallery[0].video_embed.thumbnail_url" />
+                        <img v-else class="object-cover aspect-[5/3] w-full group-hover:opacity-75 transition duration-100 bg-gray-200"
+                            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" />
+
                         <div class="text-t w-full pt-1">{{ news.data.title }}</div>
                         <div class="text-t w-full">{{ news.data.author }}</div>
                         <div class="text-t w-full"> {{ new Date(news.data.date_from).toLocaleDateString('en-gb', {

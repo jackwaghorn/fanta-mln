@@ -39,8 +39,7 @@ onMounted(() => {
                 <img data-expand="-10"
                     class="object-cover aspect-[3/2] w-full lazyload hover:opacity-75 transition duration-100"
                     src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
-                    :data-srcset="`${image.image.url}&?&w=500&fit=crop 1024w, ${image.image.url}&?&w=384&fit=crop 640w,`"
-                    sizes="(min-width: 640px) 50vw, 33vw" :height="image.image.dimensions.height"
+                    :data-src="image.image.url" :height="image.image.dimensions.height"
                     :width="image.image.dimensions.width" />
             </a>
 
@@ -60,19 +59,22 @@ onMounted(() => {
     width: 100%;
 }
 
-.fancybox__caption {
-    max-width: calc(100% - 2rem);
-}
-
-
-
-
 @media (min-width: 768px) {
-
+    .fancybox__slide {
+        padding: 1.3rem 0.8rem 0.8rem 0.8rem;
+    }
 
     .fancybox__caption {
         max-width: calc(100% - 10rem);
     }
+}
+
+.fancybox__slide {
+    padding: 0.8rem;
+}
+
+.fancybox__content {
+    max-width: calc(100% - 3.5rem);
 }
 
 .is-next,
@@ -94,7 +96,6 @@ onMounted(() => {
 .is-next::before,
 .is-prev::before {
     position: absolute;
-    right: 0;
 
     content: "";
     display: inline-block;
@@ -106,10 +107,12 @@ onMounted(() => {
 }
 
 .is-next::before {
+    right: -40px !important;
     background-image: url('~/assets/next.svg');
 }
 
 .is-prev::before {
+    left: -40px !important;
     background-image: url('~/assets/prev.svg');
 }
 
@@ -118,13 +121,13 @@ onMounted(() => {
 }
 
 .fancybox__backdrop {
-    /* opacity: 0.9; */
     background: #dbdbdbe4;
 }
 
 .fancybox__caption {
     color: #19295A;
 }
+
 
 .f-button {
     background: transparent;
