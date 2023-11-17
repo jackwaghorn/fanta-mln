@@ -1,4 +1,5 @@
 <script setup lang="ts">
+const router = useRouter();
 const prismic = usePrismic();
 const { data: page } = useAsyncData("[news]", () =>
     prismic.client.getSingle("news")
@@ -54,20 +55,26 @@ function yearChecker(e: number) {
     }
 }
 
+function openLink(news: any) {
+    if (news.link_to_page.uid) {
+        router.push(`/${news.link_to_page.type}s/${news.link_to_page.uid}`)
+    } else return
+}
+
 </script>
 
 <template>
     <div>
         <NuxtLayout title="News">
             <section class="w-full flex justify-center">
-                <div class="w-full lg:w-10/12 xl:w-8/12">
-                    <div v-for="(year, index) in categorizeAndSortByDate" :key="index" class="w-full flex flex-wrap pb-5">
+                <div class="w-full">
+                    <div v-for="(year, index) in categorizeAndSortByDate" :key="index"
+                        class="w-full flex flex-col flex-wrap pb-5">
                         <div :class="[yearChecker(year.year) ? 'opacity-50' : 'opacity-1']" class="pb-5 text-st w-full">
                             {{ year.year }}
                         </div>
-                        <NuxtLink :to="`/${news.link_to_page.type}s/${news.link_to_page.uid}`"
-                            :class="[dateChecker(news.date_to) ? 'opacity-50' : 'opacity-1']"
-                            v-for="(news, index) in year?.items || []" :key="index" class="pb-5 text-st flex ">
+                        <div @click="openLink(news)" :class="[dateChecker(news.date_to) ? 'opacity-50' : 'opacity-1']"
+                            v-for="(news, index) in year?.items || []" :key="index" class="pb-7 text-news flex hover:italic">
                             <span class="me-1">&#8594; </span>
                             {{ }}
                             <div>
@@ -77,9 +84,9 @@ function yearChecker(e: number) {
                                 {{ new Date(news.date_to).toLocaleDateString('en-gb', {
                                     month: "long", day: "numeric", year:
                                         "numeric"
-                                }) }} <span class="text-t">{{ news.type }}</span>
+                                }) }} <span class="text-news-type">{{ news.type }}</span>
                             </div>
-                        </NuxtLink>
+                        </div>
                     </div>
 
                 </div>
