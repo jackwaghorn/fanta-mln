@@ -119,13 +119,18 @@ useHead({
                         <div v-for="(author, index) in filteredAuthors || []"
                             :key="author?.data?.gallery[0]?.image.url || index" class="col-span-1 hover:cursor-default">
                             <a :data-fancybox="`gallery-${index}`" :data-src="`#description-${index}`"
-                                :href="author?.data?.gallery[0]?.image.url || ''" class="flex flex-wrap w-full">
-                                <img v-if="author?.data?.gallery[0]?.image?.dimensions?.width !== undefined"
-                                    class="object-cover aspect-[5/6] w-full hover:opacity-75 transition duration-100 lazyload "
-                                    :src="`data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=`"
-                                    :data-src="author?.data?.gallery[0]?.image?.url || ''"
-                                    :height="author?.data?.gallery[0]?.image?.dimensions?.height || 0"
-                                    :width="author?.data?.gallery[0]?.image?.dimensions?.width || 0" />
+                                :href="`${author?.data?.gallery[0]?.image.url}?&cs=srgb`"
+                                class="flex flex-wrap w-full">
+
+                                <NuxtImg v-if="author?.data?.gallery[0]?.image?.dimensions?.width !== undefined"
+                                    loading="lazy"
+                                    class="object-cover aspect-[5/6] w-full hover:opacity-75 transition duration-100"
+                                    placeholder="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
+                                    sizes="md:50vw lg:30vw xl:25vw"
+                                    :src="`${author?.data?.gallery[0]?.image?.url}?&cs=srgb`"
+                                    :height="author?.data?.gallery[0]?.image?.dimensions.height"
+                                    :width="author?.data?.gallery[0]?.image?.dimensions.width" />
+
                             </a>
 
                             <figure :data-fancybox="`gallery-${index}`" v-for="(image, imgI) in author?.data?.gallery"
@@ -141,7 +146,9 @@ useHead({
                                         <div>
                                             <p class="pb-5 text-st">{{ author?.data?.title }}</p>
                                             <PrismicRichText class="text-st" :field="author?.data.Specifications" />
-                                            <PrismicLink target="_blank" class="text-st underline decoration-1" :field="author?.data.download_link">{{author?.data.download_link.url ? 'Download': ''}}</PrismicLink>
+                                            <PrismicLink target="_blank" class="text-st underline decoration-1"
+                                                :field="author?.data.download_link">{{ author?.data.download_link.url ?
+                                                    'Download' : '' }}</PrismicLink>
 
                                         </div>
                                     </div>

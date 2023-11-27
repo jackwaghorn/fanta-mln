@@ -49,6 +49,14 @@
             "allowTargetBlank": true,
             "multi": "paragraph,heading4,strong,em,hyperlink,list-item,o-list-item"
           }
+        },
+        "cover_image": {
+          "type": "Image",
+          "config": {
+            "label": "Cover Image",
+            "constraint": {},
+            "thumbnails": []
+          }
         }
       },
       "items": {

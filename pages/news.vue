@@ -56,9 +56,12 @@ function yearChecker(e: number) {
 }
 
 function openLink(news: any) {
-    if (news.link_to_page.uid) {
+    if (news.link_to_page.link_type === 'Document') {
         router.push(`/${news.link_to_page.type}s/${news.link_to_page.uid}`)
-    } else return
+    } else if (news.link_to_page.link_type === 'Web' || news.link_to_page.link_type === 'Media') {
+        window.open(news.link_to_page.url, '_blank');
+    } else
+        return
 }
 
 </script>
@@ -74,7 +77,8 @@ function openLink(news: any) {
                             {{ year.year }}
                         </div>
                         <div @click="openLink(news)" :class="[dateChecker(news.date_to) ? 'opacity-50' : 'opacity-1']"
-                            v-for="(news, index) in year?.items || []" :key="index" class="pb-7 text-news flex hover:italic">
+                            v-for="(news, index) in year?.items || []" :key="index"
+                            class="pb-7 text-news flex hover:italic">
                             <span class="me-1">&#8594; </span>
                             {{ }}
                             <div>

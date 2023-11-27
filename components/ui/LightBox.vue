@@ -34,13 +34,11 @@ onMounted(() => {
     <div class="w-full grid grid-cols-2 xl:grid-cols-3 gap-3 md:gap-5">
         <div v-for="(image, index) in gallery" :key="index" class="text-st col-span-1">
             <!-- Photo -->
-            <a v-if="image.image.url" data-fancybox="gallery" :data-caption="image.caption" :href="image.image.url"
-                class="flex flex-wrap w-full photoswipe-item">
-                <img data-expand="-10"
-                    class="object-cover aspect-[3/2] w-full lazyload hover:opacity-75 transition duration-100"
-                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
-                    :data-src="image.image.url" :height="image.image.dimensions.height"
-                    :width="image.image.dimensions.width" />
+            <a v-if="image.image.url" data-fancybox="gallery" :data-caption="image.caption"
+                :href="`${image.image.url}?&cs=srgb`" class="flex flex-wrap w-full photoswipe-item">
+                <NuxtImg loading="lazy" class="object-cover aspect-[3/2] w-full hover:opacity-75 transition duration-100"
+                    sizes="md:360px lg:400px xl:20vw" :src="`${image.image.url}?&cs=srgb`"
+                    :height="image.image.dimensions.height" :width="image.image.dimensions.width" />
             </a>
 
             <!-- Video -->
@@ -54,58 +52,6 @@ onMounted(() => {
 </template>
 
 <style>
-.fancybox__caption {
-    bottom: 0;
-    width: 100%;
-}
-
-@media (min-width: 768px) {
-    .fancybox__slide {
-        padding: 1.3rem 0.8rem 0.8rem 0.8rem;
-    }
-
-    .fancybox__caption {
-        max-width: calc(100% - 10rem);
-    }
-}
-
-.fancybox__slide {
-    padding: 0.8rem;
-}
-
-.fancybox__content {
-    max-width: calc(100% - 3.5rem);
-}
-
-.is-next,
-.is-prev {
-    background: none !important;
-    width: 30px;
-    height: 30px;
-    padding: 0 !important;
-    border: none !important;
-    box-shadow: none !important;
-
-}
-
-.is-next svg,
-.is-prev svg {
-    display: none;
-}
-
-.is-next::before,
-.is-prev::before {
-    position: absolute;
-
-    content: "";
-    display: inline-block;
-
-    background-size: auto;
-    background-repeat: no-repeat;
-    background-size: 34px 12px;
-    background-position: center;
-}
-
 .is-next::before {
     right: -40px !important;
     background-image: url('~/assets/next.svg');
@@ -114,27 +60,5 @@ onMounted(() => {
 .is-prev::before {
     left: -40px !important;
     background-image: url('~/assets/prev.svg');
-}
-
-.f-button {
-    box-shadow: none;
-}
-
-.fancybox__backdrop {
-    background: #dbdbdbe4;
-}
-
-.fancybox__caption {
-    color: #19295A;
-}
-
-
-.f-button {
-    background: transparent;
-    color: #19295A;
-}
-
-.f-button svg {
-    opacity: 1;
 }
 </style>

@@ -425,6 +425,29 @@ interface ExhibitionDocumentData {
   date_to: prismic.DateField;
 
   /**
+   * Cover Image field in *Exhibition*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: exhibition.cover_image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  cover_image: prismic.ImageField<never>;
+
+  /**
+   * Archive Group field in *Exhibition*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: exhibition.archive_group
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  archive_group: prismic.BooleanField;
+
+  /**
    * Slice Zone field in *Exhibition*
    *
    * - **Field Type**: Slice Zone
@@ -609,6 +632,17 @@ interface FairDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   exhibition_views: prismic.KeyTextField;
+
+  /**
+   * Cover Image field in *Fair*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: fair.cover_image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  cover_image: prismic.ImageField<never>;
 
   /**
    * Slice Zone field in *Fair*
@@ -1345,6 +1379,16 @@ export interface ExhibitionSliceSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   press: prismic.RichTextField;
+
+  /**
+   * Cover Image field in *ExhibitionSlice → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: exhibition_slice.primary.cover_image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  cover_image: prismic.ImageField<never>;
 }
 
 /**

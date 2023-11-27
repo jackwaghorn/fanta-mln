@@ -32,8 +32,7 @@ const optionalPressLink = computed(() => {
             month: 'short', day: 'numeric', year:
                 'numeric'
         })}
-                `)" :release="page?.data.press_release.url" :press="optionalPressLink"
-            back="/exhibitions">
+                `)" :release="page?.data.press_release.url" :press="optionalPressLink" back="/exhibitions">
 
 
             <UiLightBox :gallery="page?.data.gallery ?? []" />

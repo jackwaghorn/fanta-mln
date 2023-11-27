@@ -46,14 +46,14 @@ useHead({
                     v-for="(expo, index) in year?.items || []" :key="index" class="pb-2 md:pb-5 text-st col-span-1 group">
 
                     <div class="flex flex-wrap w-full">
-                        <NuxtImg v-if="expo.items[0].image.url"
+                        <NuxtImg v-if="expo.items[0].image.url" loading="lazy"
                             class="object-cover aspect-[5/3] w-full group-hover:opacity-75 transition duration-100"
-                            :src="expo.items[0].image.url" :height="expo.items[0].image.dimensions.height"
-                            :width="expo.items[0].image.dimensions.width" />
-
-                        <NuxtImg v-else
-                            class="object-cover aspect-[5/3] w-full group-hover:opacity-75 transition duration-100"
-                            :src="expo.items[0].video_embed.thumbnail_url" />
+                            placeholder="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
+                            sizes="md:50vw lg:30vw xl:25vw" :src="`${expo.items[0].image.url}?&cs=srgb`"
+                            :height="expo.items[0].image.dimensions.height" :width="expo.items[0].image.dimensions.width" />
+                        <img v-else
+                            class="object-cover aspect-[5/3] w-full group-hover:opacity-75 transition duration-100 bg-gray-200"
+                            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" />
                         <div class="text-t w-full pt-1">{{ expo.primary.title }}</div>
                         <div class="text-t w-full">{{ expo.primary.author }}</div>
                         <div class="text-t w-full"> {{ new Date(expo.primary.date_from).toLocaleDateString('en-gb', {

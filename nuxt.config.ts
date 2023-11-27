@@ -12,6 +12,16 @@ export default defineNuxtConfig({
     },
   },
   modules: ['@nuxtjs/prismic', '@nuxt/image'],
+  image: {
+    provider: "prismic",
+    prismic: {},
+    screens: {
+      'sm': 640,
+      'md': 768,
+      'lg': 1024,
+      'xl': 1280,
+    },
+  },
   prismic: { endpoint: 'fanta-mln' },
   devServer: {
     port: 3001,

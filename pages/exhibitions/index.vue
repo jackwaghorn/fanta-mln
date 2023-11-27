@@ -1,17 +1,35 @@
 <script setup lang="ts">
 const prismic = usePrismic();
 const { data: page } = useAsyncData("[exhibition]", () =>
-    prismic.client.getByType("exhibition"), {
+    prismic.client.getByType("exhibition", {
+        orderings: [
+            { field: "my.exhibition.date_from", direction: "desc" }
+        ],
+    }), {
     transform: (res) => {
         const categorizedItems: { year: number; items: any[] }[] = [];
         res.results.forEach((obj) => {
             const year = new Date(String(obj.data.date_from)).getFullYear();
             const yearCategory = categorizedItems.find((category) => category.year === year);
-            if (!yearCategory) {
-                categorizedItems.push({ year: year, items: [obj] });
+            if (!obj.data.archive_group) {
+                if (!yearCategory) {
+                    categorizedItems.push({ year: year, items: [obj] });
+                } else {
+                    yearCategory.items.push(obj);
+                }
             } else {
-                yearCategory.items.push(obj);
+                const newYear = '2015-2018'
+                const archiveCategory = categorizedItems.find((category) => category.year === newYear);
+                if (!archiveCategory) {
+                    categorizedItems.push({ year: newYear, items: [obj] });
+                } else {
+                    archiveCategory.items.push(obj);
+                }
+
+
             }
+
+
         });
 
         const sortedCategories = categorizedItems.sort((a, b) => b.year - a.year);
@@ -37,18 +55,20 @@ useHead({
                 <NuxtLink :to="'/exhibitions/' + news.uid" v-for="(news, index) in year?.items || []" :key="index"
                     class="pb-2 md:pb-5 text-st col-span-1 group">
                     <div class="flex flex-wrap w-full">
-                        <img v-if="news?.data?.gallery[0]?.image?.url"
-                            class="object-cover aspect-[5/3] w-full group-hover:opacity-75 transition duration-100 lazyload"
-                            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
-                            :data-src="news?.data?.gallery[0]?.image?.url"
-                            :data-srcset="`${news?.data?.gallery[0]?.image?.url}&?&w=700&fit=crop 1024w, ${news?.data?.gallery[0]?.image?.url}&?&w=600&fit=crop 640w,`"
-                            sizes="(min-width: 640px) 50vw, 33vw" :height="news.data.gallery[0].image.dimensions.height"
-                            :width="news.data.gallery[0].image.dimensions.width" />
-
-                        <NuxtImg v-else-if="news?.data?.gallery[0]?.video_embed?.thumbnail_url"
+                        <NuxtImg v-if="news?.data?.cover_image?.url" loading="lazy"
                             class="object-cover aspect-[5/3] w-full group-hover:opacity-75 transition duration-100"
-                            :src="news.data.gallery[0].video_embed.thumbnail_url" />
-                        <img v-else class="object-cover aspect-[5/3] w-full group-hover:opacity-75 transition duration-100 bg-gray-200"
+                            placeholder="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
+                            sizes="md:50vw lg:30vw xl:25vw" :src="`${news?.data?.cover_image?.url}?&cs=srgb`"
+                            :height="news.data.cover_image.dimensions.height"
+                            :width="news.data.cover_image.dimensions.width" />
+                        <NuxtImg v-else-if="news?.data?.gallery[0]?.image?.url" loading="lazy"
+                            class="object-cover aspect-[5/3] w-full group-hover:opacity-75 transition duration-100"
+                            placeholder="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
+                            sizes="md:50vw lg:30vw xl:25vw" :src="`${news?.data?.gallery[0]?.image?.url}?&cs=srgb`"
+                            :height="news.data.gallery[0].image.dimensions.height"
+                            :width="news.data.gallery[0].image.dimensions.width" />
+                        <img v-else
+                            class="object-cover aspect-[5/3] w-full group-hover:opacity-75 transition duration-100 bg-gray-200"
                             src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" />
 
                         <div class="text-t w-full pt-1">{{ news.data.title }}</div>

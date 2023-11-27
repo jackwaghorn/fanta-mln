@@ -2,6 +2,77 @@
 @tailwind components;
 @tailwind utilities;
 
+.fancybox__backdrop {
+  background: #dbdbdbe4 !important;
+}
+.fancybox__caption {
+  bottom: 0 !important;
+  width: 100% !important;
+}
+
+@media (min-width: 768px) {
+  .fancybox__slide {
+    padding: 1.3rem 0.8rem 0.8rem 0.8rem !important;
+  }
+
+  .fancybox__caption {
+    max-width: calc(100% - 10rem) !important;
+  }
+}
+
+.fancybox__slide {
+  padding: 0.8rem !important;
+}
+
+.fancybox__content {
+  max-width: calc(100% - 3.5rem) !important;
+}
+
+.is-next,
+.is-prev {
+  background: none !important;
+  width: 30px;
+  height: 30px;
+  padding: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.is-next svg,
+.is-prev svg {
+  display: none !important;
+}
+
+.is-next::before,
+.is-prev::before {
+  position: absolute;
+
+  content: '';
+  display: inline-block;
+
+  background-size: auto;
+  background-repeat: no-repeat;
+  background-size: 34px 12px;
+  background-position: center;
+}
+
+.f-button {
+  box-shadow: none !important;
+}
+
+.fancybox__caption {
+  color: #19295a  !important;
+}
+
+.f-button {
+  background: transparent !important;
+  color: #19295a !important;
+}
+
+.f-button svg {
+  opacity: 1 !important;
+}
+
 @font-face {
   font-family: 'Studio Pro';
   src: url('~/assets/fonts/StudioPro-Regular.woff2') format('woff2'),
@@ -22,7 +93,6 @@
   html {
     font-family: 'Studio Pro', sans-serif;
     font-weight: normal;
-    @apply text-primary
-    ;
+    @apply text-primary;
   }
 }
