@@ -5,22 +5,12 @@ const { data: page } = useAsyncData("[artist-uid]", () =>
     prismic.client.getByUID("artist", route.params.uid as string)
 );
 
-const expoData = computed(() => {
-    return page.value?.data.slices3.find(slice => slice.id === route.params.id) as any;
-})
+const { data: expoData } = useAsyncData("[exhibition-uid]", () =>
+    prismic.client.getByUID("exhibition", route.params.id as string)
+);
 
-
-useHead({
-    title: "Fanta-MLN | " + page.value?.data.name,
-    meta: [
-        {
-            name: "description",
-            content: page.value?.data.meta_description || '',
-        },
-    ],
-});
 const optionalPressLink = computed(() => {
-    if (expoData?.value.primary?.press[0] && expoData?.value.primary?.press[0]?.text) {
+    if (expoData?.value?.data?.press[0] && expoData?.value?.data?.press[0]?.text) {
         return `/artists/${route.params.uid}/exhibitions/${route.params.id}/press`
     } else {
         return null
@@ -30,16 +20,20 @@ const optionalPressLink = computed(() => {
 
 <template>
     <div>
+        <Html :lang="'en'">
+        <Title>Fanta-MLN | {{ page?.data?.name }}</Title>
+        <Meta name="description" :content="page?.data?.meta_description" />
+        </Html>
 
-   
-    <NuxtLayout :title="expoData?.primary?.title" :date="String(`${new Date(String(expoData.primary.date_from)).toLocaleDateString('en-gb', { month: 'short', day: 'numeric' })}—${new Date(String(expoData.primary.date_to)).toLocaleDateString('en-gb', {
-        month: 'short', day: 'numeric', year:
-            'numeric'
-    })}
-                `)" :release="expoData.primary.press_release.url" :press="optionalPressLink" :back="'/artists/' + route.params.uid + '/exhibitions'">
+        <NuxtLayout :title="expoData?.data?.title" :date="String(`${new Date(String(expoData?.data?.date_from)).toLocaleDateString('en-gb', { month: 'short', day: 'numeric' })}—${new Date(String(expoData?.data?.date_to)).toLocaleDateString('en-gb', {
+            month: 'short', day: 'numeric', year:
+                'numeric'
+        })}
+                `)" :release="expoData?.data?.press_release?.url" :press="optionalPressLink"
+            :back="'/artists/' + route.params.uid + '/exhibitions'">
 
-        <UiLightBox :gallery="expoData.items" />
+            <UiLightBox :gallery="expoData?.data.gallery" />
 
-    </NuxtLayout>
-</div>
+        </NuxtLayout>
+    </div>
 </template>

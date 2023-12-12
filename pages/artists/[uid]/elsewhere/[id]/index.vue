@@ -10,6 +10,14 @@ const expoData = computed(() => {
 
 })
 
+const optionalPressLink = computed(() => {
+    if (expoData?.value?.primary.press[0] && expoData?.value?.primary.press[0]?.text) {
+        return `/artists/${route.params.uid}/elsewhere/${route.params.id}/press`
+    } else {
+        return null
+    }
+})
+
 useHead({
     title: "Fanta-MLN | " + page.value?.data.name,
     meta: [
@@ -29,7 +37,7 @@ useHead({
         month: 'short', day: 'numeric', year:
             'numeric'
     })}
-                `)" :release="expoData.primary.press_release.url" :press="`/artists/${route.params.uid}/elsewhere/${route.params.id}/press`" :back="'/artists/' + route.params.uid + '/elsewhere'">
+                `)" :release="expoData.primary.press_release.url" :press="optionalPressLink" :back="'/artists/' + route.params.uid + '/elsewhere'">
        
            <UiLightBox :gallery="expoData.items"/>
      

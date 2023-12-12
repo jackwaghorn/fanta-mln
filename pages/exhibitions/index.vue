@@ -5,10 +5,13 @@ const { data: page } = useAsyncData("[exhibition]", () =>
         orderings: [
             { field: "my.exhibition.date_from", direction: "desc" }
         ],
+        pageSize: 100
     }), {
     transform: (res) => {
+     
         const categorizedItems: { year: number; items: any[] }[] = [];
         res.results.forEach((obj) => {
+          
             const year = new Date(String(obj.data.date_from)).getFullYear();
             const yearCategory = categorizedItems.find((category) => category.year === year);
             if (!obj.data.archive_group) {
@@ -16,8 +19,10 @@ const { data: page } = useAsyncData("[exhibition]", () =>
                     categorizedItems.push({ year: year, items: [obj] });
                 } else {
                     yearCategory.items.push(obj);
+                    
                 }
             } else {
+           
                 const newYear = '2015-2018'
                 const archiveCategory = categorizedItems.find((category) => category.year === newYear);
                 if (!archiveCategory) {
