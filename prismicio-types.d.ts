@@ -29,6 +29,16 @@ export interface ArtistDocumentDataWorksItem {
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   caption: prismic.KeyTextField;
+
+  /**
+   * Audio field in *Artist → Works*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: artist.works[].audio
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  audio: prismic.LinkField;
 }
 
 type ArtistDocumentDataSlices3Slice = ExhibitionSliceSlice;
@@ -81,8 +91,7 @@ interface ArtistDocumentData {
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#slices
    */
-  slices: prismic.SliceZone<ArtistDocumentDataSlicesSlice>
-  /**
+  slices: prismic.SliceZone<ArtistDocumentDataSlicesSlice> /**
    * Meta Description field in *Artist*
    *
    * - **Field Type**: Text
@@ -113,8 +122,7 @@ interface ArtistDocumentData {
    * - **Tab**: SEO & Metadata
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
-  meta_title: prismic.KeyTextField
-  /**
+  meta_title: prismic.KeyTextField /**
    * Works field in *Artist*
    *
    * - **Field Type**: Group
@@ -123,8 +131,7 @@ interface ArtistDocumentData {
    * - **Tab**: Works
    * - **Documentation**: https://prismic.io/docs/field#group
    */;
-  works: prismic.GroupField<Simplify<ArtistDocumentDataWorksItem>>
-  /**
+  works: prismic.GroupField<Simplify<ArtistDocumentDataWorksItem>> /**
    * Slice Zone field in *Artist*
    *
    * - **Field Type**: Slice Zone
@@ -133,8 +140,7 @@ interface ArtistDocumentData {
    * - **Tab**: Exhibitions
    * - **Documentation**: https://prismic.io/docs/field#slices
    */;
-  slices3: prismic.SliceZone<ArtistDocumentDataSlices3Slice>
-  /**
+  slices3: prismic.SliceZone<ArtistDocumentDataSlices3Slice> /**
    * Slice Zone field in *Artist*
    *
    * - **Field Type**: Slice Zone
@@ -143,8 +149,7 @@ interface ArtistDocumentData {
    * - **Tab**: Elsewhere
    * - **Documentation**: https://prismic.io/docs/field#slices
    */;
-  slices4: prismic.SliceZone<ArtistDocumentDataSlices4Slice>
-  /**
+  slices4: prismic.SliceZone<ArtistDocumentDataSlices4Slice> /**
    * CV text box field in *Artist*
    *
    * - **Field Type**: Rich Text
@@ -153,8 +158,7 @@ interface ArtistDocumentData {
    * - **Tab**: CV
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */;
-  cv_text: prismic.RichTextField
-  /**
+  cv_text: prismic.RichTextField /**
    * Bibliography field in *Artist*
    *
    * - **Field Type**: Rich Text
@@ -278,8 +282,7 @@ interface EditionDocumentData {
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#slices
    */
-  slices: prismic.SliceZone<EditionDocumentDataSlicesSlice>
-  /**
+  slices: prismic.SliceZone<EditionDocumentDataSlicesSlice> /**
    * Meta Description field in *Edition*
    *
    * - **Field Type**: Text
@@ -310,8 +313,7 @@ interface EditionDocumentData {
    * - **Tab**: SEO & Metadata
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
-  meta_title: prismic.KeyTextField
-  /**
+  meta_title: prismic.KeyTextField /**
    * Gallery field in *Edition*
    *
    * - **Field Type**: Group
@@ -374,6 +376,16 @@ export interface ExhibitionDocumentDataGalleryItem {
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   caption: prismic.KeyTextField;
+
+  /**
+   * Audio field in *Exhibition → Gallery*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: exhibition.gallery[].audio
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  audio: prismic.LinkField;
 }
 
 /**
@@ -456,8 +468,7 @@ interface ExhibitionDocumentData {
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#slices
    */
-  slices: prismic.SliceZone<ExhibitionDocumentDataSlicesSlice>
-  /**
+  slices: prismic.SliceZone<ExhibitionDocumentDataSlicesSlice> /**
    * Meta Description field in *Exhibition*
    *
    * - **Field Type**: Text
@@ -488,8 +499,7 @@ interface ExhibitionDocumentData {
    * - **Tab**: SEO & Metadata
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
-  meta_title: prismic.KeyTextField
-  /**
+  meta_title: prismic.KeyTextField /**
    * Gallery field in *Exhibition*
    *
    * - **Field Type**: Group
@@ -498,8 +508,7 @@ interface ExhibitionDocumentData {
    * - **Tab**: Gallery
    * - **Documentation**: https://prismic.io/docs/field#group
    */;
-  gallery: prismic.GroupField<Simplify<ExhibitionDocumentDataGalleryItem>>
-  /**
+  gallery: prismic.GroupField<Simplify<ExhibitionDocumentDataGalleryItem>> /**
    * Press Release field in *Exhibition*
    *
    * - **Field Type**: Link to Media
@@ -508,8 +517,7 @@ interface ExhibitionDocumentData {
    * - **Tab**: Press Release
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */;
-  press_release: prismic.LinkToMediaField
-  /**
+  press_release: prismic.LinkToMediaField /**
    * Press field in *Exhibition*
    *
    * - **Field Type**: Rich Text
@@ -653,8 +661,7 @@ interface FairDocumentData {
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#slices
    */
-  slices: prismic.SliceZone<FairDocumentDataSlicesSlice>
-  /**
+  slices: prismic.SliceZone<FairDocumentDataSlicesSlice> /**
    * Meta Description field in *Fair*
    *
    * - **Field Type**: Text
@@ -685,8 +692,7 @@ interface FairDocumentData {
    * - **Tab**: SEO & Metadata
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
-  meta_title: prismic.KeyTextField
-  /**
+  meta_title: prismic.KeyTextField /**
    * Gallery field in *Fair*
    *
    * - **Field Type**: Group
@@ -695,8 +701,7 @@ interface FairDocumentData {
    * - **Tab**: Gallery
    * - **Documentation**: https://prismic.io/docs/field#group
    */;
-  gallery: prismic.GroupField<Simplify<FairDocumentDataGalleryItem>>
-  /**
+  gallery: prismic.GroupField<Simplify<FairDocumentDataGalleryItem>> /**
    * Press Release field in *Fair*
    *
    * - **Field Type**: Link
@@ -815,8 +820,7 @@ interface InfoDocumentData {
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#slices
    */
-  slices: prismic.SliceZone<InfoDocumentDataSlicesSlice>
-  /**
+  slices: prismic.SliceZone<InfoDocumentDataSlicesSlice> /**
    * Meta Description field in *Info*
    *
    * - **Field Type**: Text
@@ -943,8 +947,7 @@ interface NewsDocumentData {
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#slices
    */
-  slices: prismic.SliceZone<NewsDocumentDataSlicesSlice>
-  /**
+  slices: prismic.SliceZone<NewsDocumentDataSlicesSlice> /**
    * Meta Description field in *News*
    *
    * - **Field Type**: Text
@@ -1016,8 +1019,7 @@ interface NewsletterDocumentData {
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#slices
    */
-  slices: prismic.SliceZone<NewsletterDocumentDataSlicesSlice>
-  /**
+  slices: prismic.SliceZone<NewsletterDocumentDataSlicesSlice> /**
    * Meta Description field in *Newsletter*
    *
    * - **Field Type**: Text
@@ -1460,7 +1462,7 @@ declare module "@prismicio/client" {
   interface CreateClient {
     (
       repositoryNameOrEndpoint: string,
-      options?: prismic.ClientConfig
+      options?: prismic.ClientConfig,
     ): prismic.Client<AllDocumentTypes>;
   }
 

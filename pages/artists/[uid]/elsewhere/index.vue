@@ -25,16 +25,15 @@ const categorizeAndSortByDate = computed(() => {
     const sortedCategories = categorizedItems.sort((a, b) => b.year - a.year);
     return sortedCategories;
 });
-
-useHead({
-    title: "Fanta-MLN | " + page.value?.data.name,
-
-});
 </script>
 <template>
     <div>
+         <Html :lang="'en'">
+            <Title>Fanta-MLN | {{ page?.data?.name }}</Title>
+            <Meta name="description" :content="page?.data?.meta_description" />
+            </Html>
         <NuxtLayout :title="page?.data.name" :author="page?.data.bio"
-            :links="[{ title: 'Works', url: `/artists/${route.params.uid}/works` }, { title: 'Exhibitions', url: `/artists/${route.params.uid}/exhibitions` }, { title: 'Elsewhere', url: `/artists/${route.params.uid}/elsewhere` }, { title: 'CV', url: `/artists/${route.params.uid}/cv` }, { title: 'Bibliography', url: `/artists/${route.params.uid}/bibliography` }]"
+            :links="[{ title: 'Works', url: `/artists/${route.params.uid}` }, { title: 'Exhibitions', url: `/artists/${route.params.uid}/exhibitions` }, { title: 'Elsewhere', url: `/artists/${route.params.uid}/elsewhere` }, { title: 'CV', url: `/artists/${route.params.uid}/cv` }, { title: 'Bibliography', url: `/artists/${route.params.uid}/bibliography` }]"
             :back="`/artists/${route.params.uid}`">
 
             <div v-for="(year, index) in categorizeAndSortByDate" :key="index"

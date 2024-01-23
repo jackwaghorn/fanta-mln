@@ -119,6 +119,15 @@
                 "label": "Caption",
                 "placeholder": ""
               }
+            },
+            "audio": {
+              "type": "Link",
+              "config": {
+                "label": "Audio",
+                "placeholder": "",
+                "allowTargetBlank": false,
+                "select": null
+              }
             }
           }
         }

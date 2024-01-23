@@ -10,20 +10,14 @@ const expoData = computed(() => {
     return page.value?.data.slices4.find(slice => slice.id === route.params.id) as any;
 })
 
-useHead({
-    title: "Fanta-MLN | " + page.value?.data.name,
-    meta: [
-        {
-            name: "description",
-            content: page.value?.data.meta_description || '',
-        },
-    ],
-});
-
 </script>
 
 <template>
     <div>
+         <Html :lang="'en'">
+            <Title>Fanta-MLN | {{ page?.data?.name }}</Title>
+            <Meta name="description" :content="page?.data?.meta_description" />
+            </Html>
         <NuxtLayout :title="expoData?.primary?.title" :date="String(`${new Date(String(expoData.primary.date_from)).toLocaleDateString('en-gb', { month: 'short', day: 'numeric' })}—${new Date(String(expoData.primary.date_to)).toLocaleDateString('en-gb', {
             month: 'short', day: 'numeric', year:
                 'numeric'

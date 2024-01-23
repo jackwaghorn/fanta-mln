@@ -41,7 +41,7 @@ const { data: exhibitions } = useAsyncData("[exhibition]", () =>
         <Title>Fanta-MLN | {{ page?.data?.name }}</Title>
         </Html>
         <NuxtLayout :title="page?.data.name" :author="page?.data.bio"
-            :links="[{ title: 'Works', url: `/artists/${route.params.uid}/works` }, { title: 'Exhibitions', url: `/artists/${route.params.uid}/exhibitions` }, { title: 'Elsewhere', url: `/artists/${route.params.uid}/elsewhere` }, { title: 'CV', url: `/artists/${route.params.uid}/cv` }, { title: 'Bibliography', url: `/artists/${route.params.uid}/bibliography` }]"
+            :links="[{ title: 'Works', url: `/artists/${route.params.uid}` }, { title: 'Exhibitions', url: `/artists/${route.params.uid}/exhibitions` }, { title: 'Elsewhere', url: `/artists/${route.params.uid}/elsewhere` }, { title: 'CV', url: `/artists/${route.params.uid}/cv` }, { title: 'Bibliography', url: `/artists/${route.params.uid}/bibliography` }]"
             :back="'/artists/' + route.params.uid">
 
             <div v-for="(year, index) in exhibitions" :key="index"
