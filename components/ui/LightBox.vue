@@ -13,6 +13,7 @@ const audioPlaying = ref(null)
 
 
 function togglePlay(index: number) {
+    console.log()
     let aEl = document.getElementById('audio-' + index)
     aEl.muted = false;
     aEl.paused ? audioPlaying.value = index : audioPlaying.value = null;
@@ -21,6 +22,11 @@ function togglePlay(index: number) {
 
 onMounted(() => {
     Fancybox.bind("[data-fancybox]", {
+          Carousel: {
+            Panzoom: {
+                decelFriction: 1,
+            },
+        },
         Thumbs: false,
         Toolbar: {
             display:
@@ -44,39 +50,37 @@ onMounted(() => {
 <template>
     <div class="w-full grid grid-cols-2 xl:grid-cols-3 gap-3 md:gap-5">
         <div v-for="(image, index) in gallery" :key="index" class="text-st col-span-1">
-            <!-- Photo -->
-            <a v-if="image.image.url" data-fancybox="gallery" :data-caption="image.caption"
-                :href="`${image.image.url}?&cs=srgb`" class="flex flex-wrap w-full photoswipe-item">
-                <NuxtImg loading="lazy" class="object-cover aspect-[3/2] w-full hover:opacity-75 transition duration-100"
-                    sizes="md:360px lg:400px xl:20vw" :src="`${image.image.url}?&cs=srgb`"
-                    :height="image.image.dimensions.height" :width="image.image.dimensions.width" />
-            </a>
-            <!-- Video -->
-            <a v-else-if="image?.video_embed?.embed_url" class="flex flex-wrap w-full photoswipe-item" data-fancybox="gallery"
-                :href="image.video_embed.embed_url">
-                <img class="object-cover aspect-[3/2] w-full lazyload hover:opacity-75 transition duration-100"
-                    :data-src="image.video_embed.thumbnail_url" />
-            </a>
             <!-- Audio -->
-            <div v-else @click="togglePlay(index)" class="w-full h-full photoswipe-item flex items-center justify-center">
-                <div class="w-full h-full flex justify-center items-center aspect-[3/2] bg-gray-200">
-                    <svg v-if="audioPlaying === index" class="w-8 h-8 text-gray-primary" aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-                        <path fill-rule="evenodd"
-                            d="M8 5a2 2 0 0 0-2 2v10c0 1.1.9 2 2 2h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H8Zm7 0a2 2 0 0 0-2 2v10c0 1.1.9 2 2 2h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1Z"
-                            clip-rule="evenodd" />
-                    </svg>
-                    <svg v-else class="w-8 h-8 text-gray-primary" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+            <a id="fancybox-audio" v-if="image.audio.url" :href="image.audio.url" data-fancybox="audio"
+                :data-caption="image.caption" class="w-full h-full photoswipe-item" data-type="html5video"
+                :data-thumb="image.image.url">
+                <div v-if="image.image.url">
+                    <NuxtImg loading="lazy"
+                        class="object-cover aspect-[3/2] w-full hover:opacity-75 transition duration-100"
+                        sizes="md:360px lg:400px xl:20vw" :src="`${image?.image?.url}?&cs=srgb`"
+                        :height="image?.image?.dimensions?.height" :width="image?.image?.dimensions?.width" />
+                </div>
+                <div v-else class="w-full h-full flex justify-center items-center aspect-[3/2] bg-gray-200">
+                    <svg class="w-8 h-8 text-gray-primary" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                         fill="currentColor" viewBox="0 0 24 24">
                         <path fill-rule="evenodd" d="M8.6 5.2A1 1 0 0 0 7 6v12a1 1 0 0 0 1.6.8l8-6a1 1 0 0 0 0-1.6l-8-6Z"
                             clip-rule="evenodd" />
                     </svg>
                 </div>
-                <audio :id="'audio-' + index">
-                    <source :src="image.audio.url" type="audio/mp3" />
-                </audio>
-            </div>
-
+            </a>
+            <!-- Video -->
+            <a v-else-if="image?.video_embed?.embed_url" class="flex flex-wrap w-full photoswipe-item"
+                data-fancybox="gallery" :href="image.video_embed.embed_url">
+                <img class="object-cover aspect-[3/2] w-full lazyload hover:opacity-75 transition duration-100"
+                    :data-src="image.video_embed.thumbnail_url" />
+            </a>
+            <!-- Photo -->
+            <a v-else-if="image.image.url" data-fancybox="gallery" :data-caption="image.caption"
+                :href="`${image.image.url}?&cs=srgb`" class="flex flex-wrap w-full photoswipe-item">
+                <NuxtImg loading="lazy" class="object-cover aspect-[3/2] w-full hover:opacity-75 transition duration-100"
+                    sizes="md:360px lg:400px xl:20vw" :src="`${image.image.url}?&cs=srgb`"
+                    :height="image.image.dimensions.height" :width="image.image.dimensions.width" />
+            </a>
         </div>
     </div>
 </template>

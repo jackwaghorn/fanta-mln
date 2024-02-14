@@ -341,6 +341,82 @@ export type EditionDocument<Lang extends string = string> =
     Lang
   >;
 
+type EditionsHomepageDocumentDataSlicesSlice = never;
+
+/**
+ * Content for Editions Homepage documents
+ */
+interface EditionsHomepageDocumentData {
+  /**
+   * Slice Zone field in *Editions Homepage*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: editions_homepage.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<EditionsHomepageDocumentDataSlicesSlice>;
+
+  /**
+   * Contact Text field in *Editions Homepage*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: editions_homepage.contact_text
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  contact_text: prismic.KeyTextField /**
+   * Meta Description field in *Editions Homepage*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: editions_homepage.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Editions Homepage*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: editions_homepage.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+
+  /**
+   * Meta Title field in *Editions Homepage*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: editions_homepage.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_title: prismic.KeyTextField;
+}
+
+/**
+ * Editions Homepage document from Prismic
+ *
+ * - **API ID**: `editions_homepage`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type EditionsHomepageDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<EditionsHomepageDocumentData>,
+    "editions_homepage",
+    Lang
+  >;
+
 type ExhibitionDocumentDataSlicesSlice = never;
 
 /**
@@ -1072,6 +1148,7 @@ export type NewsletterDocument<Lang extends string = string> =
 export type AllDocumentTypes =
   | ArtistDocument
   | EditionDocument
+  | EditionsHomepageDocument
   | ExhibitionDocument
   | FairDocument
   | InfoDocument
@@ -1296,6 +1373,16 @@ export interface ElsewhereSliceSliceDefaultItem {
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   caption: prismic.KeyTextField;
+
+  /**
+   * Audio field in *ElsewhereSlice → Items*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: elsewhere_slice.items[].audio
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  audio: prismic.LinkField;
 }
 
 /**
@@ -1479,6 +1566,9 @@ declare module "@prismicio/client" {
       EditionDocumentDataAuthorsItem,
       EditionDocumentDataSlicesSlice,
       EditionDocumentDataGalleryItem,
+      EditionsHomepageDocument,
+      EditionsHomepageDocumentData,
+      EditionsHomepageDocumentDataSlicesSlice,
       ExhibitionDocument,
       ExhibitionDocumentData,
       ExhibitionDocumentDataSlicesSlice,

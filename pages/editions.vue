@@ -10,11 +10,14 @@ const prismic = usePrismic();
 const { data: page } = useAsyncData("[edition]", () =>
     prismic.client.getByType("edition", {
         orderings: [
-            { field: "my.artist.name", direction: "asc" }
+            { field: "my.edition.title", direction: "asc" }
         ],
     })
 );
 
+const { data: editionsHomepage } = useAsyncData("[editions_homepage]", () =>
+    prismic.client.getSingle("editions_homepage")
+);
 const uniqueAuthors = computed(() => {
     const names = page.value?.results.map((book) => {
         return book?.data?.authors.map((author) => {
@@ -107,7 +110,7 @@ useHead({
                                 {{ name }}
                             </div>
                             <div class="pt-5">
-                                To order a copy, please send an email to: info@fanta-mln.it </div>
+                                {{editionsHomepage?.data?.contact_text}}</div>
                         </section>
                     </div>
                 </div>
@@ -136,7 +139,7 @@ useHead({
                             <figure :data-fancybox="`gallery-${index}`" v-for="(image, imgI) in author?.data?.gallery"
                                 :data-src="image.image.url || ''" class="hidden">
                                 <figcaption class="w-full">
-                                    <PrismicRichText class="text-st " :field="author?.data.Specifications" />
+                                    <!-- <PrismicRichText class="text-st " :field="author?.data.Specifications" /> -->
                                 </figcaption>
                             </figure>
                             <!-- Specifications slide -->

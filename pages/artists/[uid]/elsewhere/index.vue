@@ -8,13 +8,13 @@ const { data: page } = useAsyncData("[artist-uid]", () =>
 const categorizeAndSortByDate = computed(() => {
     const categorizedItems: { year: number; items: any[] }[] = [];
     const slices = (page.value?.data.slices4 as { slice_type: string }[]) ?? [];
+    slices.sort( (a, b) => {
+        return new Date(b.primary.date_to) - new Date(a.primary.date_to);
+    });
     slices.forEach((obj) => {
 
         const year = obj.primary?.date_from ? new Date(String(obj.primary.date_from)).getFullYear() : null;
-
-
         const yearCategory = categorizedItems.find((category) => category.year === year);
-
         if (!yearCategory) {
             categorizedItems.push({ year: year ?? 0, items: [obj] });
         } else {

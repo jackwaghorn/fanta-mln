@@ -14,7 +14,7 @@ useHead({
 </script>
 <template>
   <main class="h-full flex flex-col items-center justify-center">
-    <NuxtLink :to="'/exhibitions/' + page?.uid">
+    <NuxtLink class="text-center" :to="'/exhibitions/' + page?.uid">
       <h1 class="text-st">
         {{ page ? page?.data?.title : '' }}
       </h1>

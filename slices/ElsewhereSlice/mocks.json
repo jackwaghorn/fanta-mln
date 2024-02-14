@@ -102,6 +102,16 @@
 							"value": "quite",
 							"type": "Text"
 						}
+					],
+					[
+						"audio",
+						{
+							"__TYPE__": "LinkContent",
+							"value": {
+								"__TYPE__": "ExternalLink",
+								"url": "http://twitter.com"
+							}
+						}
 					]
 				]
 			}
