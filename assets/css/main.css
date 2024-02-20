@@ -6,6 +6,7 @@
   background: #dbdbdbe4 !important;
 }
 .fancybox__caption {
+/* margin-top:auto !important; */
   bottom: 0 !important;
   width: 100% !important;
 }

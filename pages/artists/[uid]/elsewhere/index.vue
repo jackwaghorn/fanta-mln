@@ -9,7 +9,7 @@ const categorizeAndSortByDate = computed(() => {
     const categorizedItems: { year: number; items: any[] }[] = [];
     const slices = (page.value?.data.slices4 as { slice_type: string }[]) ?? [];
     slices.sort( (a, b) => {
-        return new Date(b.primary.date_to) - new Date(a.primary.date_to);
+        return new Date(b.primary.date_from) - new Date(a.primary.date_from);
     });
     slices.forEach((obj) => {
 

@@ -3,7 +3,7 @@ const prismic = usePrismic();
 const { data: page } = useAsyncData("[exhibition]", () =>
   prismic.client.getSingle("exhibition", {
     orderings: [
-      { field: "my.exhibition.date_to", direction: "desc" },
+      { field: "my.exhibition.date_from", direction: "desc" },
     ],
   })
 )

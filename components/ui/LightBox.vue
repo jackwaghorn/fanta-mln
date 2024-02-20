@@ -70,9 +70,10 @@ onMounted(() => {
             </a>
             <!-- Video -->
             <a v-else-if="image?.video_embed?.embed_url" class="flex flex-wrap w-full photoswipe-item"
-                data-fancybox="gallery" :href="image.video_embed.embed_url">
+                data-fancybox="gallery" :href="image.video_embed.embed_url" :data-caption="image.caption">
                 <img class="object-cover aspect-[3/2] w-full lazyload hover:opacity-75 transition duration-100"
                     :data-src="image.video_embed.thumbnail_url" />
+
             </a>
             <!-- Photo -->
             <a v-else-if="image.image.url" data-fancybox="gallery" :data-caption="image.caption"

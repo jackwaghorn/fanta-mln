@@ -27,7 +27,7 @@ const uniqueAuthors = computed(() => {
 
     return names?.filter((value, index, self) => {
         return self.indexOf(value) === index;
-    });
+    }).sort()
 
 })
 
