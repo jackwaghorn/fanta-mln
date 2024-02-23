@@ -13,6 +13,7 @@ const optionalReleaseLink = computed(() => {
     }
 })
 
+console.log(page)
 </script>
 
 <template>
@@ -28,7 +29,7 @@ const optionalReleaseLink = computed(() => {
                 `)" :release="optionalReleaseLink" back="/fairs">
 
 
-
+<!-- {{ page?.data.gallery }} -->
             <UiLightBox :gallery="page?.data.gallery ?? []" />
         </NuxtLayout>
     </div>

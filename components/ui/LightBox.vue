@@ -46,15 +46,16 @@ onMounted(() => {
         },
     });
 })
+
 </script>
 <template>
     <div class="w-full grid grid-cols-2 xl:grid-cols-3 gap-3 md:gap-5">
         <div v-for="(image, index) in gallery" :key="index" class="text-st col-span-1">
             <!-- Audio -->
-            <a id="fancybox-audio" v-if="image.audio.url" :href="image.audio.url" data-fancybox="audio"
+            <a id="fancybox-audio" v-if="image?.audio?.url" :href="image?.audio?.url" data-fancybox="audio"
                 :data-caption="image.caption" class="w-full h-full photoswipe-item" data-type="html5video"
-                :data-thumb="image.image.url">
-                <div v-if="image.image.url">
+                :data-thumb="image?.image?.url">
+                <div v-if="image?.image?.url">
                     <NuxtImg loading="lazy"
                         class="object-cover aspect-[3/2] w-full hover:opacity-75 transition duration-100"
                         sizes="md:360px lg:400px xl:20vw" :src="`${image?.image?.url}?&cs=srgb`"
@@ -76,7 +77,7 @@ onMounted(() => {
 
             </a>
             <!-- Photo -->
-            <a v-else-if="image.image.url" data-fancybox="gallery" :data-caption="image.caption"
+            <a v-else-if="image?.image?.url" data-fancybox="gallery" :data-caption="image.caption"
                 :href="`${image.image.url}?&cs=srgb`" class="flex flex-wrap w-full photoswipe-item">
                 <NuxtImg loading="lazy" class="object-cover aspect-[3/2] w-full hover:opacity-75 transition duration-100"
                     sizes="md:360px lg:400px xl:20vw" :src="`${image.image.url}?&cs=srgb`"
