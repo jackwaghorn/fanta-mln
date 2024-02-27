@@ -12,7 +12,7 @@ const prismic = usePrismic();
 const { data: page } = useAsyncData("[edition]", () =>
     prismic.client.getByType("edition"), {
     transform: (response) => {
-        return response?.results.sort((a:any, b:any) =>
+        return response?.results.sort((a: any, b: any) =>
             a?.data?.authors[0]?.author?.split(' ')[1].localeCompare(b?.data?.authors[0]?.author?.split(' ')[1])
         )
     }

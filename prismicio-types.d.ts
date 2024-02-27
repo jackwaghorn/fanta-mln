@@ -21,14 +21,14 @@ export interface ArtistDocumentDataWorksItem {
   image: prismic.ImageField<never>;
 
   /**
-   * Caption field in *Artist → Works*
+   * Video embed field in *Artist → Works*
    *
-   * - **Field Type**: Text
+   * - **Field Type**: Embed
    * - **Placeholder**: *None*
-   * - **API ID Path**: artist.works[].caption
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **API ID Path**: artist.works[].video_embed
+   * - **Documentation**: https://prismic.io/docs/field#embed
    */
-  caption: prismic.KeyTextField;
+  video_embed: prismic.EmbedField;
 
   /**
    * Audio field in *Artist → Works*
@@ -39,6 +39,16 @@ export interface ArtistDocumentDataWorksItem {
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
   audio: prismic.LinkField;
+
+  /**
+   * Caption field in *Artist → Works*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: artist.works[].caption
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  caption: prismic.KeyTextField;
 }
 
 type ArtistDocumentDataSlices3Slice = ExhibitionSliceSlice;

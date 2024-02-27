@@ -84,10 +84,10 @@
                 "thumbnails": []
               }
             },
-            "caption": {
-              "type": "Text",
+            "video_embed": {
+              "type": "Embed",
               "config": {
-                "label": "Caption",
+                "label": "Video embed",
                 "placeholder": ""
               }
             },
@@ -97,6 +97,13 @@
                 "label": "Audio",
                 "placeholder": "",
                 "select": null
+              }
+            },
+            "caption": {
+              "type": "Text",
+              "config": {
+                "label": "Caption",
+                "placeholder": ""
               }
             }
           }
