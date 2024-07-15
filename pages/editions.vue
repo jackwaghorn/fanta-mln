@@ -10,7 +10,9 @@ const closeBtn = "<svg class='pe-2 w-[3rem] md:w-[4rem]' width='50' viewBox='0 0
 
 const prismic = usePrismic();
 const { data: page } = useAsyncData("[edition]", () =>
-    prismic.client.getByType("edition"), {
+    prismic.client.getByType("edition", {
+        pageSize:200
+    }), {
     transform: (response) => {
         return response?.results.sort((a: any, b: any) =>
             a?.data?.authors[0]?.author?.split(' ')[1].localeCompare(b?.data?.authors[0]?.author?.split(' ')[1])
