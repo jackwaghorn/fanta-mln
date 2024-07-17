@@ -112,7 +112,8 @@ useHead({
                                 All editions
                             </div>
 
-                            <div @click="setFilter(name)" :class="filters.includes(name as never) ? 'italic' : 'not-italic'"
+                            <div @click="setFilter(name)"
+                                :class="filters.includes(name as never) ? 'italic' : 'not-italic'"
                                 class="hover:cursor-default" v-for="(name, index) in uniqueAuthors" :key="index">
                                 {{ name }}
                             </div>
@@ -135,7 +136,7 @@ useHead({
                                     loading="lazy"
                                     class="object-cover aspect-[5/6] w-full hover:opacity-75 transition duration-100"
                                     placeholder="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
-                                    sizes="md:50vw lg:30vw xl:25vw"
+                                    sizes="md:50vw lg:45vw xl:40vw"
                                     :src="`${author?.data?.gallery[0]?.image?.url}?&cs=srgb`"
                                     :height="author?.data?.gallery[0]?.image?.dimensions.height"
                                     :width="author?.data?.gallery[0]?.image?.dimensions.width" />
@@ -157,7 +158,7 @@ useHead({
                                             <PrismicRichText class="text-st" :field="author?.data.Specifications" />
                                             <PrismicLink target="_blank" class="text-st underline decoration-1"
                                                 :field="author?.data.download_link">{{ author?.data.download_link.url ?
-                                                    'Download' : '' }}</PrismicLink>
+                                                'Download' : '' }}</PrismicLink>
 
                                         </div>
                                     </div>
