@@ -13,7 +13,7 @@ const audioPlaying = ref(null)
 
 
 function togglePlay(index: number) {
-    console.log()
+
     let aEl = document.getElementById('audio-' + index)
     aEl.muted = false;
     aEl.paused ? audioPlaying.value = index : audioPlaying.value = null;

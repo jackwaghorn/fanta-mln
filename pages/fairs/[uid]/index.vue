@@ -13,7 +13,10 @@ const optionalReleaseLink = computed(() => {
     }
 })
 
-console.log(page)
+const returnToArtist = computed(() => {
+    return route.query.artistpage
+})
+
 </script>
 
 <template>
@@ -26,10 +29,11 @@ console.log(page)
             month: 'short', day: 'numeric', year:
                 'numeric'
         })}
-                `)" :release="optionalReleaseLink" back="/fairs">
+                `)" :release="optionalReleaseLink"
+            :back="returnToArtist ? `/artists/${route.query.artistpage}/elsewhere` : '/fairs'">
 
 
-<!-- {{ page?.data.gallery }} -->
+            <!-- {{ page?.data.gallery }} -->
             <UiLightBox :gallery="page?.data.gallery ?? []" />
         </NuxtLayout>
     </div>
