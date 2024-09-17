@@ -3,6 +3,12 @@ export default defineNuxtConfig({
   app: {
     pageTransition: { name: 'fade', mode: 'out-in', appear: true  }
   },
+  site: {
+    url: 'https://www.fanta-mln.it/',
+  },
+  sitemap: {
+    sources: ['/api/sitemap'],
+  },
   devtools: { enabled: true },
   css: ['~/assets/css/main.css'],
   postcss: {
@@ -11,7 +17,7 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
-  modules: ['@nuxtjs/prismic', '@nuxt/image'],
+  modules: ['@nuxtjs/prismic', '@nuxt/image', '@nuxtjs/sitemap'],
   image: {
     provider: "prismic",
     prismic: {},
