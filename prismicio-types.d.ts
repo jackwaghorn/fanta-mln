@@ -132,7 +132,18 @@ interface ArtistDocumentData {
    * - **Tab**: SEO & Metadata
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
-  meta_title: prismic.KeyTextField /**
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Keywords field in *Artist*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: artist.keywords
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  keywords: prismic.KeyTextField /**
    * Works field in *Artist*
    *
    * - **Field Type**: Group
