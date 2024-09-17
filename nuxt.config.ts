@@ -7,7 +7,12 @@ export default defineNuxtConfig({
     url: 'https://www.fanta-mln.it/',
   },
   sitemap: {
-    sources: ['/sitemap/sitemap'],
+    hostname: 'https://www.fanta-mln.it', // Ensure hostname is set
+    routes: async () => {
+      const prismic = usePrismic();
+      const { data: page } = await prismic.client.getByType("artist");
+      return page.results.map(p => `/artists/${p.uid}`);
+    }
   },
   devtools: { enabled: true },
   css: ['~/assets/css/main.css'],

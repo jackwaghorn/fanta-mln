@@ -1,16 +1,19 @@
 import { asSitemapUrl, defineSitemapEventHandler } from '#imports'
 
+
 export default defineSitemapEventHandler(async () => {
     // fetch data directly in the correct type
-    // const posts = await $fetch<ReturnType<typeof asSitemapUrl>>('/api/posts')
-    // const pages = await $fetch<{ pages: { slug: string, title: string } }>('/api/posts')
     const prismic = usePrismic();
-    const { data: page } = useAsyncData("[artist]", () =>
-        prismic.client.getByType("artist"))
+    const { data: page } = await useAsyncData("[artist]", () =>
+        prismic.client.getByType("artist")
+    );
+
+    // Ensure page.value is accessed correctly
+    const artists = page.value?.results ?? [];
 
     return [
-        // map URLS as needed
-        ...page.map(p => asSitemapUrl({
+        // map URLs as needed
+        ...artists.map(p => asSitemapUrl({
             loc: `/artists/${p.uid}`,
         }))
     ]
