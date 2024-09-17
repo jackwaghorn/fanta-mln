@@ -7,7 +7,7 @@ export default defineNuxtConfig({
     url: 'https://www.fanta-mln.it/',
   },
   sitemap: {
-    sources: ['/api/sitemap'],
+    sources: ['/sitemap/sitemap'],
   },
   devtools: { enabled: true },
   css: ['~/assets/css/main.css'],
