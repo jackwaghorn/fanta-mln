@@ -11,7 +11,7 @@ const props = defineProps(["title", "author", "date", "release", "press", "back"
             <section class="md:w-[28rem] w-full h-auto text-st pb-6">
                 <div class="md:sticky top-[6.25rem]">
                     <div class="md:pe-5 pe-3">
-                        <p> {{ title }}</p>
+                        <h1> {{ title }}</h1>
                         <p> {{ author }}</p>
                         <p> {{ date }}</p>
                         <p><a v-if="release" target="_blank" :href="release">Press Release</a></p>

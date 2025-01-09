@@ -224,7 +224,7 @@ watch(open, () => {
     <!-- Weather -->
     <footer class="fixed p-3 md:p-5 bottom-0 right-0 z-20">
         <div class="text-st inline-block">
-            <span><img class="w-[1.5rem] md:w-[1.8rem] inline-block weather-icon"
+            <span><img class="w-[1.5rem] md:w-[1.8rem] inline-block weather-icon" alt="weather-icon"
                     :src="`/img/weather/${weathers[weather?.current_weather.weathercode].icon}.svg`" /></span>
             {{ Math.round(weather?.current_weather.temperature) }}°C
         </div>

@@ -57,6 +57,7 @@ onMounted(() => {
                 :data-thumb="image?.image?.url">
                 <div v-if="image?.image?.url">
                     <NuxtImg loading="lazy"
+                    alt="audio cover image"
                         class="object-cover aspect-[3/2] w-full hover:opacity-75 transition duration-100"
                         sizes="md:360px lg:400px xl:20vw" :src="`${image?.image?.url}?&cs=srgb`"
                         :height="image?.image?.dimensions?.height" :width="image?.image?.dimensions?.width" />
@@ -80,6 +81,7 @@ onMounted(() => {
             <a v-else-if="image?.image?.url" data-fancybox="gallery" :data-caption="image.caption"
                 :href="`${image.image.url}?&cs=srgb`" class="flex flex-wrap w-full photoswipe-item">
                 <NuxtImg loading="lazy" class="object-cover aspect-[3/2] w-full hover:opacity-75 transition duration-100"
+                alt="artwork"
                     sizes="md:360px lg:400px xl:20vw" :src="`${image.image.url}?&cs=srgb`"
                     :height="image.image.dimensions.height" :width="image.image.dimensions.width" />
             </a>

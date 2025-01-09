@@ -10,8 +10,8 @@ const { data: page } = useAsyncData("[artist-uid]", () =>
 <template>
     <div>
         <Html :lang="'en'">
-        <Title>Fanta-MLN | {{ page?.data?.name }}</Title>
-        <Meta name="description" :content="page?.data?.meta_description" />
+        <Title>{{ page?.data?.name }} | Fanta-MLN</Title>
+        <Meta name="description" :content="`${page?.data?.name} ${page?.data?.meta_description}`" />
         <Meta name="keywords" :content="page?.data?.keywords" />
 
         </Html>
