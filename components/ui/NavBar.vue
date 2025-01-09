@@ -203,7 +203,7 @@ watch(open, () => {
             </div>
         </button>
         <transition name="slide">
-            <section v-if="open"
+            <nav v-show="open"
                 class="h-auto w-full md:w-auto p-3 md:p-0 right-0 fixed md:right-5 pt-16 top-0 md:top-20 bg-white">
                 <ul class="text-st border-t border-b divide-y divide-primary border-primary md:text-center">
                     <li v-for="link in links" :key="link" class=" md:px-2">
@@ -212,7 +212,7 @@ watch(open, () => {
                                 link.title }}</span></NuxtLink>
                     </li>
                 </ul>
-            </section>
+            </nav>
         </transition>
     </header>
     <!-- Newsletter button -->
